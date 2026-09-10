@@ -1,86 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Time Table - Government Polytechnic Muzaffarpur</title>
+    <title>Routine - Govt. Polytechnic Muzaffarpur</title>
     <style>
         * {
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             margin: 0;
             padding: 0;
         }
         body {
-            background-color: #f4f7f6;
-            color: #333;
-            padding: 20px;
+            background-color: #f1f5f9;
+            color: #1e293b;
+            padding: 15px;
         }
         .container {
-            max-width: 1250px;
+            max-width: 1100px;
             margin: 0 auto;
-            background: #fff;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 20px;
         }
         header {
             text-align: center;
-            border-bottom: 2px solid #e0e0e0;
-            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 12px;
             margin-bottom: 20px;
         }
         header h1 {
-            color: #1a365d;
-            font-size: 22px;
-            margin-bottom: 5px;
+            color: #0f172a;
+            font-size: 19px;
+            font-weight: 800;
+            text-transform: uppercase;
         }
         header p {
-            color: #666;
+            color: #64748b;
             font-size: 13px;
+            margin-top: 4px;
         }
-        .room-info {
+        /* Selection Controls */
+        .controls-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .control-group {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin-bottom: 20px;
-            background: #eef2f7;
-            padding: 10px 15px;
-            border-radius: 8px;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .control-group label {
             font-size: 13px;
-        }
-        .room-tag {
-            background: #fff;
-            padding: 5px 12px;
-            border-radius: 4px;
-            border-left: 3px solid #3182ce;
-            font-weight: 600;
-        }
-        .filter-section {
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 10px;
+            font-weight: 700;
+            color: #334155;
         }
         select {
-            padding: 8px 12px;
-            border: 1px solid #cbd5e0;
-            border-radius: 6px;
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #3b82f6;
+            border-radius: 8px;
             font-size: 14px;
+            font-weight: 600;
+            color: #1e293b;
+            background-color: #fff;
             outline: none;
             cursor: pointer;
-            background: #fff;
         }
-        .table-responsive {
+        .info-strip {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1e40af;
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .room-badge {
+            background: #fef08a;
+            color: #854d0e;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        /* Table Layout for All Days */
+        .table-wrapper {
             overflow-x: auto;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 12px;
+            font-size: 12.5px;
             text-align: center;
+            min-width: 850px;
         }
         th, td {
             border: 1px solid #e2e8f0;
@@ -88,31 +113,71 @@
             vertical-align: middle;
         }
         th {
-            background-color: #2b6cb0;
-            color: #ffffff;
+            background-color: #334155;
+            color: #fff;
             font-weight: 600;
-            white-space: nowrap;
         }
-        tr:nth-child(even) {
+        tr:nth-child(even) td {
             background-color: #f8fafc;
         }
-        tr:hover {
-            background-color: #edf2f7;
-        }
-        .lunch {
-            background-color: #fed7d7 !important;
-            color: #9b2c2c;
+        .day-badge {
             font-weight: bold;
+            background-color: #e2e8f0 !important;
+            color: #0f172a;
+        }
+        .lunch-cell {
+            background-color: #fee2e2 !important;
+            color: #991b1b;
+            font-weight: bold;
+            font-size: 11px;
             letter-spacing: 1px;
         }
-        .day-cell {
-            font-weight: bold;
-            background-color: #edf2f7;
-            color: #2d3748;
+        /* Cards Layout for Single Day on Mobile */
+        .single-day-view {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
-        .branch-cell {
+        .period-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #3b82f6;
+            padding: 12px 15px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .period-time {
+            font-size: 12px;
+            font-weight: 700;
+            color: #64748b;
+            min-width: 95px;
+        }
+        .period-subject {
+            font-size: 14px;
             font-weight: 600;
-            color: #2b6cb0;
+            color: #0f172a;
+            text-align: right;
+        }
+        .period-card.lunch {
+            border-left-color: #ef4444;
+            background: #fff5f5;
+        }
+        .period-card.lunch .period-subject {
+            color: #dc2626;
+            font-weight: 700;
+        }
+        @media (max-width: 600px) {
+            .controls-grid {
+                grid-template-columns: 1fr;
+            }
+            .info-strip {
+                flex-direction: column;
+                gap: 5px;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -120,359 +185,203 @@
 
 <div class="container">
     <header>
-        <h1>GOVERNMENT POLYTECHNIC MUZAFFARPUR</h1>
-        <p>Time-Table: Semester-1 (w.e.f. July 25, 2025 | Updated: 06-08-2026)</p>
+        <h1>Govt. Polytechnic Muzaffarpur</h1>
+        <p>Semester-1 Class Routine (2025-2026)</p>
     </header>
 
-    <div class="room-info">
-        <div class="room-tag">EE: Room 403</div>
-        <div class="room-tag">EC: Room 209</div>
-        <div class="room-tag">CE: Room 406</div>
-        <div class="room-tag">CSE: Room 211</div>
-        <div class="room-tag">LT: Room 104</div>
-        <div class="room-tag">ME: Room 408</div>
+    <!-- Selection Menu -->
+    <div class="controls-grid">
+        <div class="control-group">
+            <label for="branchSelect">1. Branch Chune:</label>
+            <select id="branchSelect" onchange="renderView()">
+                <option value="EC" selected>EC (Electronics Engg.)</option>
+                <option value="CSE">CSE (Computer Science)</option>
+                <option value="ME">ME (Mechanical Engg.)</option>
+                <option value="EE">EE (Electrical Engg.)</option>
+                <option value="CE">CE (Civil Engg.)</option>
+                <option value="LT">LT (Leather Technology)</option>
+            </select>
+        </div>
+        <div class="control-group">
+            <label for="daySelect">2. Din (Day) Chune:</label>
+            <select id="daySelect" onchange="renderView()">
+                <option value="ALL">Poora Hafta (All Days)</option>
+                <option value="MON">Monday (Somwar)</option>
+                <option value="TUE">Tuesday (Mangalwar)</option>
+                <option value="WED">Wednesday (Budhwar)</option>
+                <option value="THU">Thursday (Guruwar)</option>
+                <option value="FRI">Friday (Shukrawar)</option>
+                <option value="SAT">Saturday (Shaniwar)</option>
+            </select>
+        </div>
     </div>
 
-    <div class="filter-section">
-        <label for="branchFilter"><strong>Select Branch:</strong></label>
-        <select id="branchFilter" onchange="filterBranch()">
-            <option value="ALL">All Branches</option>
-            <option value="EC">EC (Electronics)</option>
-            <option value="CSE">CSE</option>
-            <option value="ME">ME</option>
-            <option value="EE">EE</option>
-            <option value="CE">CE</option>
-            <option value="LT">LT (Leather Tech)</option>
-        </select>
+    <!-- Room / Branch Info -->
+    <div class="info-strip">
+        <span id="selectedBranchName">Electronics Engineering (EC)</span>
+        <span class="room-badge" id="selectedRoom">Room: 209</span>
     </div>
 
-    <div class="table-responsive">
-        <table id="timetable">
-            <thead>
+    <!-- Routine Container -->
+    <div id="contentArea"></div>
+</div>
+
+<script>
+const timeSlots = [
+    "09:00 - 10:00",
+    "10:00 - 11:00",
+    "11:00 - 12:00",
+    "12:00 - 01:00",
+    "01:00 - 02:00",
+    "02:00 - 03:00",
+    "03:00 - 04:00",
+    "04:00 - 05:00"
+];
+
+const routineData = {
+    "EC": {
+        name: "Electronics Engineering (EC)",
+        room: "Theory Room: 209",
+        schedule: {
+            "MON": ["Applied Chemistry-B Lab [AS]", "Basic Engg. Math [APS]", "Applied Chem. -A [AS]", "Comm. Skills [PRS]", "Applied Physics-B Lab [Md. O]", "Sports, Yoga & Meditation [SPS]", "Cultural / Activities"],
+            "TUE": ["Basic Engg. Math [APS]", "Applied Physics-B [Md. O]", "Basic Engg. Math [APS]", "Comm. Skills (TW) [PRS]", "Applied Physics-B Lab [Md. O]", "Applied Chemistry-B [AS]", "Activities"],
+            "WED": ["Applied Physics-B Lab [Md. O]", "Applied Chemistry -A [AS]", "Applied Phys-B [Md. PA]", "E.Edu.& Sust. Dev. [SS]", "Sports, Yoga & Meditation [SPS]", "Basic Engg. Math-TW [APS]", "Quiz / Activities"],
+            "THU": ["Applied Chemistry-B Lab [AS]", "Applied Chemistry-B Lab [AS]", "Basic Engg. Math [SKP]", "Applied Physics-B [Md. PA]", "Basic Engg. Math [APS]", "EE Workshop - TW [VK]", "Quiz / Activities"],
+            "FRI": ["Basic Engg. Math [APS]", "Intro. to AI [Prof. Sweta]", "Basic Engg. Math [APS]", "E. Draw & Graphics - TW [SK]", "Applied Physics-A [Md. PA]", "Intro. to AI - TW [Prof. Sweta]", "Activities"],
+            "SAT": ["Intro. to AI Lab [KP]", "Intro. to AI [Prof. Sweta]", "Basic Engg. Math [SKP]", "Indian Constitution [SKP]", "EE Workshop [VK]", "Activities", "Activities"]
+        }
+    },
+    "CSE": {
+        name: "Computer Science & Engg. (CSE)",
+        room: "Theory Room: 211",
+        schedule: {
+            "MON": ["Intro. to AI Lab [Prof. Sweta]", "Intro. to AI Lab [Prof. Sweta]", "Intro. to AI Lab [KP]", "Intro. to AI [Prof. Sweta]", "Intro. to AI [KP]", "ICT Tools Lab [NK]", "Activities"],
+            "TUE": ["Intro. to AI Lab [KP]", "Intro. to AI Lab [KP]", "Basic Engg. Math [APS]", "Comm. Skills [PRS]", "Applied Physics-B [Md. O]", "Comm. Skills Lab [PRS]", "Sports, Yoga & Meditation"],
+            "WED": ["Introduction to AI [KP]", "Basic Engg. Math [APS]", "Applied Chem. -A [AS]", "Intro. to AI - TW [KP]", "Comm. Skills Lab [PRS]", "EE Workshop [YK]", "EE Workshop [YK]"],
+            "THU": ["Intro. to AI Lab [KP]", "Intro. to AI Lab [KP]", "Basic Elect. Engg. Lab [SKM]", "Introduction to AI [KP]", "Applied Physics-B Lab [Md. O]", "Applied Physics-B Lab [Md. O]", "Activities"],
+            "FRI": ["Introduction to AI [KP]", "Applied Chemistry -A [AS]", "Basic Engg. Math [SKP]", "Comm. Skills [PRS]", "Applied Physics-B Lab [Md. O]", "Applied Physics-B Lab [Md. O]", "AI - TW [Prof. Arvind]"],
+            "SAT": ["Basic Engg. Math [APS]", "Introduction to AI [KP]", "Applied Chem. -A [AS]", "ICT Tools - TW [NK]", "Open Edu. (CIS/KYP/ST) [NK/YK]", "Activities", "Activities"]
+        }
+    },
+    "ME": {
+        name: "Mechanical Engineering (ME)",
+        room: "Theory Room: 408",
+        schedule: {
+            "MON": ["Fund. Of Mech Engg [AK]", "Engg Drawing [AKM]", "Applied Chemistry-B [AS]", "Chem-A Lab / FME Lab", "Comm. Skills Lab [PRS]", "Mech. Work [RK]", "Sports, Yoga [SPS]"],
+            "TUE": ["C Skills Lab / Mech. Work", "Basic Engg. Math [SKP]", "Engg Drawing [AKM]", "Chem-A Lab / FME Lab", "Engg. Drawing & Graphics [AK]", "Engg. Drawing & Graphics [AK]", "Mech. Work - TW [RK]"],
+            "WED": ["Applied Physics-B [Md. O]", "Engineering Mech. [MK]", "Comm. Skills [SPS]", "Fund. Of Mech Engg [AK]", "Engg. Drawing Lab [AKM]", "Engg. Drawing Lab [AKM]", "Engineering Mech. - TW [MK]"],
+            "THU": ["Basic Engg. Math [SKP]", "Basic Elect. Engg. [SKM]", "Applied Chem. -A [AS]", "Engg. Draw / FME Lab", "Chem-A Lab / FME Lab", "Chem-A Lab / FME Lab", "Activities"],
+            "FRI": ["Fund. Of Mech Engg (L+TW) [AK]", "App. Physics-A TW [Md. PA]", "Basic Engg. Math [SKP]", "Engg. Drw / Chem Lab", "Applied Phy-A [Md. PA]", "Quiz / GD Activities", "Activities"],
+            "SAT": ["Basic Engg. Math [SKP]", "Comm. Skills [SPS]", "Applied Chemistry -A [AS]", "Engg Drawing [AKM]", "Engg. Drawing - TW [AKM]", "Engg. Drawing - TW [AKM]", "Activities"]
+        }
+    },
+    "EE": {
+        name: "Electrical Engineering (EE)",
+        room: "Theory Room: 403",
+        schedule: {
+            "MON": ["FEEE [PK]", "Basic Elect. Engg. [SKM]", "Fund. of EE Lab [PK]", "E.Edu.& Sust. Dev. [SS]", "EE Workshop [SPK]", "EE Workshop [SPK]", "Activities"],
+            "TUE": ["Basic Engg. Math [APS]", "Applied Physics-A [Md. PA]", "Applied Physics-A Lab [Md. PA]", "E.Edu.& Sust. Dev. Lab [SS]", "FEEE (TW) [PK]", "Basic Engg. Math-TW [APS]", "Basic Engg. Math-TW [APS]"],
+            "WED": ["Introduction to AI Lab [AK]", "Basic Engg. Math - TW [APS]", "Basic Engg. Math [APS]", "Applied Physics-B Lab [Md. PA]", "EE Workshop [YK]", "Sports, Yoga [SPS]", "Activities"],
+            "THU": ["Applied Physics-B [Md. O]", "FEEE [PK]", "Basic Elect. Engg. [SKM]", "Applied Physics-B (L+TW) [Md. O]", "EE Workshop - TW [SPK]", "EE Workshop - TW [SPK]", "Activities"],
+            "FRI": ["Fund. of EE Lab [PK]", "Basic Elect. Engg. [SKM]", "Applied Chem. -A [AS]", "FEEE [PK]", "Basic Elect. Engg. - TW [SKM]", "Renewable Energy Sources [MK]", "Activities"],
+            "SAT": ["EE Workshop [Prof. Yogesh]", "Comm. Skills [SPS]", "Applied Chem. -A Lab [AS]", "Essence of IKS [APS]", "Professional Ethics [APS]", "Activities", "Activities"]
+        }
+    },
+    "CE": {
+        name: "Civil Engineering (CE)",
+        room: "Theory Room: 406",
+        schedule: {
+            "MON": ["Applied Physics-B [Md. PA]", "Engg. Mechanics Lab [MK]", "Applied Chemistry-A [AS]", "Basic Engg. Math [SKP]", "Applied Chem. -A [AS]", "Applied Chem. -A [AS]", "Sports & Yoga [SPS]"],
+            "TUE": ["Applied Chem. -A Lab [AS]", "Basic Engg. Math [APS]", "Basic Engg. Math [SKP]", "Comm. Skills [PRS]", "Applied Physics-A Lab [Md. PA]", "Applied Physics-A Lab [Md. PA]", "Indian Constitution [SKP]"],
+            "WED": ["Applied Physics-B [Md. O]", "Comm. Skills [SPS]", "Applied Chem. -A Lab [AS]", "Basic Engg. Math [SKP]", "Engg. Drawing & Graphics [AK]", "Engg. Drawing & Graphics [AK]", "Activities"],
+            "THU": ["Applied Chem. -A Lab [AS]", "Intro. to AI Lab [KP]", "Engg. Mechanics Lab [MK]", "Comm. Skills [PRS]", "Basic Engg. Math (TW) [SKP]", "Basic Engg. Math (TW) [SKP]", "Activities"],
+            "FRI": ["Comm. Skills (L+TW) [SPS]", "Basic Engg. Math [APS]", "Applied Chem. -A Lab [AS]", "Basic Engg. Math / Constitution", "Applied Chemistry -A (TW) [AS]", "Applied Chemistry -A (TW) [AS]", "Activities"],
+            "SAT": ["Applied Chem. -A Lab [AS]", "Engineering Mech. [MK]", "Applied Chem. -A Lab [AS]", "Comm. Skills Lab [PRS]", "Applied Physics-B - TW [Md. PO]", "Applied Physics-B - TW [Md. PO]", "Activities"]
+        }
+    },
+    "LT": {
+        name: "Leather Technology (LT)",
+        room: "Theory Room: 104",
+        schedule: {
+            "MON": ["-", "-", "-", "-", "-", "-", "-"],
+            "TUE": ["-", "-", "-", "-", "-", "-", "-"],
+            "WED": ["Basic Engg. Math [APS]", "Comm. Skills [SPS]", "Applied Physics-B [Md. O]", "Basic Engg. Math [APS]", "Engg. Drawing & Graphics [AK]", "Engg. Drawing & Graphics [AK]", "Activities"],
+            "THU": ["-", "-", "-", "-", "-", "-", "-"],
+            "FRI": ["Basic Engg. Math [SKP]", "Applied Chemistry -A [AS]", "Basic Engg. Math [SKP]", "Comm. Skills [PRS]", "Sustainability & Energy (TW) [MK]", "Activities", "Activities"],
+            "SAT": ["Applied Chemistry -A Lab [AS]", "Engineering Mech. [MK]", "Basic Engg. Math [SKP]", "Comm. Skills [PRS]", "Open Edu. (CIS/KYP/ST) [NK/YK]", "Activities", "Activities"]
+        }
+    }
+};
+
+function renderView() {
+    const branchKey = document.getElementById("branchSelect").value;
+    const dayKey = document.getElementById("daySelect").value;
+    const branch = routineData[branchKey];
+    const container = document.getElementById("contentArea");
+
+    document.getElementById("selectedBranchName").innerText = branch.name;
+    document.getElementById("selectedRoom").innerText = branch.room;
+
+    // View 1: Specific Single Day (Mobile Card Style)
+    if (dayKey !== "ALL") {
+        const p = branch.schedule[dayKey];
+        container.innerHTML = `
+            <div class="single-day-view">
+                <div class="period-card"><span class="period-time">09:00 - 10:00</span><span class="period-subject">${p[0]}</span></div>
+                <div class="period-card"><span class="period-time">10:00 - 11:00</span><span class="period-subject">${p[1]}</span></div>
+                <div class="period-card"><span class="period-time">11:00 - 12:00</span><span class="period-subject">${p[2]}</span></div>
+                <div class="period-card"><span class="period-time">12:00 - 01:00</span><span class="period-subject">${p[3]}</span></div>
+                <div class="period-card lunch"><span class="period-time">01:00 - 02:00</span><span class="period-subject">LUNCH BREAK</span></div>
+                <div class="period-card"><span class="period-time">02:00 - 03:00</span><span class="period-subject">${p[4]}</span></div>
+                <div class="period-card"><span class="period-time">03:00 - 04:00</span><span class="period-subject">${p[5]}</span></div>
+                <div class="period-card"><span class="period-time">04:00 - 05:00</span><span class="period-subject">${p[6]}</span></div>
+            </div>
+        `;
+    } 
+    // View 2: All Days (Complete Table)
+    else {
+        let tableHTML = `
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>DAY</th>
+                            <th>09:00 - 10:00</th>
+                            <th>10:00 - 11:00</th>
+                            <th>11:00 - 12:00</th>
+                            <th>12:00 - 01:00</th>
+                            <th>01:00 - 02:00</th>
+                            <th>02:00 - 03:00</th>
+                            <th>03:00 - 04:00</th>
+                            <th>04:00 - 05:00</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        `;
+
+        for (const [day, periods] of Object.entries(branch.schedule)) {
+            tableHTML += `
                 <tr>
-                    <th>Day</th>
-                    <th>Branch</th>
-                    <th>09:00 - 10:00</th>
-                    <th>10:00 - 11:00</th>
-                    <th>11:00 - 12:00</th>
-                    <th>12:00 - 01:00</th>
-                    <th>01:00 - 02:00</th>
-                    <th>02:00 - 03:00</th>
-                    <th>03:00 - 04:00</th>
-                    <th>04:00 - 05:00</th>
+                    <td class="day-badge">${day}</td>
+                    <td>${periods[0]}</td>
+                    <td>${periods[1]}</td>
+                    <td>${periods[2]}</td>
+                    <td>${periods[3]}</td>
+                    <td class="lunch-cell">LUNCH</td>
+                    <td>${periods[4]}</td>
+                    <td>${periods[5]}</td>
+                    <td>${periods[6]}</td>
                 </tr>
-            </thead>
-            <tbody>
-                <!-- Monday -->
-                <tr class="data-row" data-branch="EC">
-                    <td class="day-cell">MON</td>
-                    <td class="branch-cell">EC</td>
-                    <td>Applied Chemistry-B Lab [AS]</td>
-                    <td>Basic Engg. Math [APS]</td>
-                    <td>Applied Chem. -A [AS]</td>
-                    <td>Comm. Skills [PRS]</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Applied Physics-B Lab [Md. O]</td>
-                    <td>Sports, Yoga & Meditation [SPS]</td>
-                    <td>Activities</td>
-                </tr>
-                <tr class="data-row" data-branch="CSE">
-                    <td class="day-cell">MON</td>
-                    <td class="branch-cell">CSE</td>
-                    <td>Intro. to AI Lab [Prof. Sweta]</td>
-                    <td>Intro. to AI Lab [Prof. Sweta]</td>
-                    <td>Intro. to AI Lab [KP]</td>
-                    <td>Intro. to AI [Prof. Sweta]</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Intro. to AI [KP]</td>
-                    <td>ICT Tools Lab [NK]</td>
-                    <td>Activities</td>
-                </tr>
-                <tr class="data-row" data-branch="ME">
-                    <td class="day-cell">MON</td>
-                    <td class="branch-cell">ME</td>
-                    <td>Fund. Of Mech Engg [AK]</td>
-                    <td>Engg Drawing [AKM]</td>
-                    <td>Applied Chemistry-B [AS]</td>
-                    <td>Chem-A Lab / FME Lab</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Comm. Skills Lab [PRS]</td>
-                    <td>Mech. Work [RK]</td>
-                    <td>Sports, Yoga & Meditation [SPS]</td>
-                </tr>
-                <tr class="data-row" data-branch="EE">
-                    <td class="day-cell">MON</td>
-                    <td class="branch-cell">EE</td>
-                    <td>FEEE [PK]</td>
-                    <td>Basic Elect. Engg. [SKM]</td>
-                    <td>Fund. of EE Lab [PK]</td>
-                    <td>E.Edu.& Sust. Dev. [SS]</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>EE Workshop [SPK]</td>
-                    <td>EE Workshop [SPK]</td>
-                    <td>Activities</td>
-                </tr>
-                <tr class="data-row" data-branch="CE">
-                    <td class="day-cell">MON</td>
-                    <td class="branch-cell">CE</td>
-                    <td>Applied Physics-B [Md. PA]</td>
-                    <td>Engg. Mechanics Lab [MK]</td>
-                    <td>Applied Chemistry-A [AS]</td>
-                    <td>Basic Engg. Math [SKP]</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Applied Chem. -A [AS]</td>
-                    <td>Applied Chem. -A [AS]</td>
-                    <td>Sports & Yoga [SPS]</td>
-                </tr>
+            `;
+        }
 
-                <!-- Tuesday -->
-                <tr class="data-row" data-branch="EC">
-                    <td class="day-cell">TUE</td>
-                    <td class="branch-cell">EC</td>
-                    <td>Basic Engg. Math [APS]</td>
-                    <td>Applied Physics-B [Md. O]</td>
-                    <td>Basic Engg. Math [APS]</td>
-                    <td>Comm. Skills (TW) [PRS]</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Applied Physics-B Lab [Md. O]</td>
-                    <td>Applied Chemistry-B [AS]</td>
-                    <td>Activities</td>
-                </tr>
-                <tr class="data-row" data-branch="CSE">
-                    <td class="day-cell">TUE</td>
-                    <td class="branch-cell">CSE</td>
-                    <td>Intro. to AI Lab [KP]</td>
-                    <td>Intro. to AI Lab [KP]</td>
-                    <td>Basic Engg. Math [APS]</td>
-                    <td>Comm. Skills [PRS]</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Applied Physics-B [Md. O]</td>
-                    <td>Comm. Skills Lab [PRS]</td>
-                    <td>Sports, Yoga & Meditation</td>
-                </tr>
-                <tr class="data-row" data-branch="ME">
-                    <td class="day-cell">TUE</td>
-                    <td class="branch-cell">ME</td>
-                    <td>C Skills Lab / Mech. Work</td>
-                    <td>Basic Engg. Math [SKP]</td>
-                    <td>Engg Drawing [AKM]</td>
-                    <td>Chem-A Lab / FME Lab</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Engg. Drawing & Graphics [AK]</td>
-                    <td>Engg. Drawing & Graphics [AK]</td>
-                    <td>Mech. Work - TW [RK]</td>
-                </tr>
-                <tr class="data-row" data-branch="EE">
-                    <td class="day-cell">TUE</td>
-                    <td class="branch-cell">EE</td>
-                    <td>Basic Engg. Math [APS]</td>
-                    <td>Applied Physics-A [Md. PA]</td>
-                    <td>Applied Physics-A Lab [Md. PA]</td>
-                    <td>E.Edu.& Sust. Dev. Lab [SS]</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>FEEE (TW) [PK]</td>
-                    <td>Basic Engg. Math-TW [APS]</td>
-                    <td>Basic Engg. Math-TW [APS]</td>
-                </tr>
-                <tr class="data-row" data-branch="CE">
-                    <td class="day-cell">TUE</td>
-                    <td class="branch-cell">CE</td>
-                    <td>Applied Chem. -A Lab [AS]</td>
-                    <td>Basic Engg. Math [APS]</td>
-                    <td>Basic Engg. Math [SKP]</td>
-                    <td>Comm. Skills [PRS]</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Applied Physics-A Lab [Md. PA]</td>
-                    <td>Applied Physics-A Lab [Md. PA]</td>
-                    <td>Indian Constitution [SKP]</td>
-                </tr>
+        tableHTML += `</tbody></table></div>`;
+        container.innerHTML = tableHTML;
+    }
+}
 
-                <!-- Wednesday -->
-                <tr class="data-row" data-branch="EC">
-                    <td class="day-cell">WED</td>
-                    <td class="branch-cell">EC</td>
-                    <td>Applied Physics-B Lab [Md. O]</td>
-                    <td>Applied Chemistry -A [AS]</td>
-                    <td>Applied Phys-B [Md. PA]</td>
-                    <td>E.Edu.& Sust. Dev. [SS]</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Sports, Yoga & Meditation [SPS]</td>
-                    <td>Basic Engg. Math (TW) [APS]</td>
-                    <td>Activities</td>
-                </tr>
-                <tr class="data-row" data-branch="CSE">
-                    <td class="day-cell">WED</td>
-                    <td class="branch-cell">CSE</td>
-                    <td>Introduction to AI [KP]</td>
-                    <td>Basic Engg. Math [APS]</td>
-                    <td>Applied Chem. -A [AS]</td>
-                    <td>Intro. to AI - TW [KP]</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Comm. Skills Lab [PRS]</td>
-                    <td>EE Workshop [YK]</td>
-                    <td>EE Workshop [YK]</td>
-                </tr>
-                <tr class="data-row" data-branch="ME">
-                    <td class="day-cell">WED</td>
-                    <td class="branch-cell">ME</td>
-                    <td>Applied Physics-B [Md. O]</td>
-                    <td>Engineering Mech. [MK]</td>
-                    <td>Comm. Skills [SPS]</td>
-                    <td>Fund. Of Mech Engg [AK]</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Engg. Drawing Lab [AKM]</td>
-                    <td>Engg. Drawing Lab [AKM]</td>
-                    <td>Engineering Mech. - TW [MK]</td>
-                </tr>
-                <tr class="data-row" data-branch="EE">
-                    <td class="day-cell">WED</td>
-                    <td class="branch-cell">EE</td>
-                    <td>Introduction to AI Lab [AK]</td>
-                    <td>Basic Engg. Math - TW [APS]</td>
-                    <td>Basic Engg. Math [APS]</td>
-                    <td>Applied Physics-B Lab [Md. PA]</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>EE Workshop [YK]</td>
-                    <td>Sports, Yoga & Meditation [SPS]</td>
-                    <td>Activities</td>
-                </tr>
-                <tr class="data-row" data-branch="CE">
-                    <td class="day-cell">WED</td>
-                    <td class="branch-cell">CE</td>
-                    <td>Applied Physics-B [Md. O]</td>
-                    <td>Comm. Skills [SPS]</td>
-                    <td>Applied Chem. -A Lab [AS]</td>
-                    <td>Basic Engg. Math [SKP]</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Engg. Drawing & Graphics [AK]</td>
-                    <td>Engg. Drawing & Graphics [AK]</td>
-                    <td>Activities</td>
-                </tr>
-                <tr class="data-row" data-branch="LT">
-                    <td class="day-cell">WED</td>
-                    <td class="branch-cell">LT</td>
-                    <td>Basic Engg. Math [APS]</td>
-                    <td>Comm. Skills [SPS]</td>
-                    <td>Applied Physics-B [Md. O]</td>
-                    <td>Basic Engg. Math [APS]</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Engg. Drawing & Graphics [AK]</td>
-                    <td>Engg. Drawing & Graphics [AK]</td>
-                    <td>Activities</td>
-                </tr>
+window.onload = renderView;
+</script>
 
-                <!-- Thursday -->
-                <tr class="data-row" data-branch="EC">
-                    <td class="day-cell">THU</td>
-                    <td class="branch-cell">EC</td>
-                    <td>Applied Chemistry -B Lab [AS]</td>
-                    <td>Applied Chemistry -B Lab [AS]</td>
-                    <td>Basic Engg. Math [SKP]</td>
-                    <td>Applied Physics-B [Md. PA]</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Basic Engg. Math [APS]</td>
-                    <td>EE Workshop - TW [VK]</td>
-                    <td>Activities</td>
-                </tr>
-                <tr class="data-row" data-branch="CSE">
-                    <td class="day-cell">THU</td>
-                    <td class="branch-cell">CSE</td>
-                    <td>Introduction to AI Lab [KP]</td>
-                    <td>Introduction to AI Lab [KP]</td>
-                    <td>Basic Elect. Engg. Lab [SKM]</td>
-                    <td>Introduction to AI [KP]</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Applied Physics-B Lab [Md. O]</td>
-                    <td>Applied Physics-B Lab [Md. O]</td>
-                    <td>Quiz / Activities</td>
-                </tr>
-                <tr class="data-row" data-branch="ME">
-                    <td class="day-cell">THU</td>
-                    <td class="branch-cell">ME</td>
-                    <td>Basic Engg. Math [SKP]</td>
-                    <td>Basic Elect. Engg. [SKM]</td>
-                    <td>Applied Chem. -A [AS]</td>
-                    <td>Engg. Draw / FME Lab</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Chem-A Lab / FME Lab</td>
-                    <td>Chem-A Lab / FME Lab</td>
-                    <td>Activities</td>
-                </tr>
-                <tr class="data-row" data-branch="EE">
-                    <td class="day-cell">THU</td>
-                    <td class="branch-cell">EE</td>
-                    <td>Applied Physics-B [Md. O]</td>
-                    <td>FEEE [PK]</td>
-                    <td>Basic Elect. Engg. [SKM]</td>
-                    <td>Applied Physics-B (L+TW) [Md. O]</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>EE Workshop - TW [SPK]</td>
-                    <td>EE Workshop - TW [SPK]</td>
-                    <td>Activities</td>
-                </tr>
-                <tr class="data-row" data-branch="CE">
-                    <td class="day-cell">THU</td>
-                    <td class="branch-cell">CE</td>
-                    <td>Applied Chem. -A Lab [AS]</td>
-                    <td>Introduction to AI Lab [KP]</td>
-                    <td>Engineering Mechanics Lab [MK]</td>
-                    <td>Comm. Skills [PRS]</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Basic Engg. Math (TW) [SKP]</td>
-                    <td>Basic Engg. Math (TW) [SKP]</td>
-                    <td>Activities</td>
-                </tr>
-
-                <!-- Friday -->
-                <tr class="data-row" data-branch="EC">
-                    <td class="day-cell">FRI</td>
-                    <td class="branch-cell">EC</td>
-                    <td>Basic Engg. Math [APS]</td>
-                    <td>Intro. to AI [Prof. Sweta]</td>
-                    <td>Basic Engg. Math [APS]</td>
-                    <td>E. Draw & Graphics - TW [SK]</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Applied Physics-A [Md. PA]</td>
-                    <td>Intro. to AI - TW [Prof. Sweta]</td>
-                    <td>Activities</td>
-                </tr>
-                <tr class="data-row" data-branch="CSE">
-                    <td class="day-cell">FRI</td>
-                    <td class="branch-cell">CSE</td>
-                    <td>Introduction to AI [KP]</td>
-                    <td>Applied Chemistry -A [AS]</td>
-                    <td>Basic Engg. Math [SKP]</td>
-                    <td>Comm. Skills [PRS]</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Applied Physics-B Lab [Md. O]</td>
-                    <td>Applied Physics-B Lab [Md. O]</td>
-                    <td>AI - TW [Prof. Arvind]</td>
-                </tr>
-                <tr class="data-row" data-branch="ME">
-                    <td class="day-cell">FRI</td>
-                    <td class="branch-cell">ME</td>
-                    <td>Fund. Of Mech Engg (L+TW) [AK]</td>
-                    <td>App. Physics-A TW [Md. PA]</td>
-                    <td>Basic Engg. Math [SKP]</td>
-                    <td>Engg. Drw. / Chem Lab</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Applied Phy-A [Md. PA]</td>
-                    <td>Quiz / GD / Activities</td>
-                    <td>Activities</td>
-                </tr>
-                <tr class="data-row" data-branch="EE">
-                    <td class="day-cell">FRI</td>
-                    <td class="branch-cell">EE</td>
-                    <td>Fund. of EE Lab [PK]</td>
-                    <td>Basic Elect. Engg. [SKM]</td>
-                    <td>Applied Chem. -A [AS]</td>
-                    <td>FEEE [PK]</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Basic Elect. Engg. - TW [SKM]</td>
-                    <td>Renewable Energy Sources [MK]</td>
-                    <td>Activities</td>
-                </tr>
-                <tr class="data-row" data-branch="CE">
-                    <td class="day-cell">FRI</td>
-                    <td class="branch-cell">CE</td>
-                    <t
+</body>
+</html>
