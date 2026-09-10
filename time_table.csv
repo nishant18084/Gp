@@ -1,0 +1,25 @@
+Day,Branch,09:00-10:00,10:00-11:00,11:00-12:00,12:00-01:00,01:00-02:00,02:00-03:00,03:00-04:00,04:00-05:00
+MON,CSE,Intro to AI Lab [Sweta],Intro to AI Lab [Sweta],Intro to AI Lab [KP],Intro to AI [Sweta],LUNCH,Intro to AI [KP],ICT Tools Lab [NK],Activities
+MON,ME,Fund. Mech Engg [AK],Engg Drawing [AKM],Applied Chem-B [AS],Chem-A Lab / FME Lab,LUNCH,Comm Skills Lab / Mech Work,Mech Work [RK],Sports/Yoga [SPS]
+MON,EE,FEEE [PK],Basic Elect. Engg [SKM],FEEE Lab [PK],E.Edu & Sust Dev [SS],LUNCH,EE Workshop [SPK],EE Workshop [SPK],Activities
+MON,CE,Appl. Phy-B [Md. PA],Engg Mech Lab [MK],Applied Chem-A [AS],Basic Engg Math [SKP],LUNCH,Applied Chem-A [AS],Applied Chem-A [AS],Sports/Yoga [SPS]
+TUE,CSE,Intro to AI Lab [KP],Intro to AI Lab [KP],Basic Engg Math [APS],Comm Skills [PRS],LUNCH,Applied Phy-B [Md. O],Comm Skills Lab [PRS],Sports/Yoga
+TUE,ME,C Skills / Mech Work,Basic Engg Math [SKP],Engg Drawing [AKM],Chem-A Lab / FME Lab,LUNCH,Engg Drawing & Graph [AK],Engg Drawing & Graph [AK],Mech Work-TW
+TUE,EE,Basic Engg Math [APS],Applied Phy-A [Md. PA],Applied Phy-A Lab [Md. PA],E.Edu Lab [SS],LUNCH,FEEE (TW) [PK],Basic Engg Math-TW [APS],Basic Engg Math-TW
+TUE,CE,Applied Chem-A Lab [AS],Basic Engg Math [APS],Basic Engg Math [SKP],Comm Skills [PRS],LUNCH,Applied Phy-A Lab [Md. PA],Applied Phy-A Lab [Md. PA],Indian Const [SKP]
+WED,CSE,Intro to AI [KP],Basic Engg Math [APS],Applied Chem-A [AS],Intro to AI-TW [KP],LUNCH,Comm Skills Lab [PRS],EE Workshop [YK],EE Workshop [YK]
+WED,ME,Applied Phy-B [Md. O],Engg Mech [MK],Comm Skills [SPS],Fund Mech Engg [AK],LUNCH,Engg Drawing Lab [AKM],Engg Drawing Lab [AKM],Engg Mech-TW [MK]
+WED,EE,Intro to AI Lab [AK],Basic Engg Math-TW [APS],Basic Engg Math [APS],Applied Phy-B Lab [Md. PA],LUNCH,EE Workshop [YK],Sports & Yoga [SPS],Activities
+WED,CE,Applied Phy-B [Md. O],Comm Skills [SPS],Applied Chem-A Lab [AS],Basic Engg Math [SKP],LUNCH,Engg Drawing & Graph [AK],Engg Drawing & Graph [AK],Activities
+THU,CSE,Intro to AI Lab [KP],Intro to AI Lab [KP],Basic Elect Engg Lab [SKM],Intro to AI [KP],LUNCH,Applied Phy-B Lab [Md. O],Applied Phy-B Lab [Md. O],Activities
+THU,ME,Basic Engg Math [SKP],Basic Elect Engg [SKM],Applied Chem-A [AS],Engg Draw / FME Lab,LUNCH,Chem-A Lab / FME Lab,Chem-A Lab / FME Lab,Activities
+THU,EE,Applied Phy-B [Md. O],FEEE [PK],Basic Elect Engg [SKM],Applied Phy-B (L+TW) [Md. O],LUNCH,EE Workshop-TW [SPK],EE Workshop-TW [SPK],Activities
+THU,CE,Applied Chem-A Lab [AS],Intro to AI Lab [KP],Engg Mech Lab [MK],Comm Skills [PRS],LUNCH,Basic Engg Math (TW) [SKP],Basic Engg Math (TW) [SKP],Activities
+FRI,CSE,Intro to AI [KP],Applied Chem-A [AS],Basic Engg Math [SKP],Comm Skills [PRS],LUNCH,Applied Phy-B Lab [Md. O],Applied Phy-B Lab [Md. O],AI-TW [Arvind]
+FRI,ME,Fund Mech Engg [AK],Applied Phy-A TW [Md. PA],Basic Engg Math [SKP],Engg Drw / Chem Lab,LUNCH,Applied Phy-A [Md. PA],Quiz / Activities,Quiz / Activities
+FRI,EE,FEEE Lab [PK],Basic Elect Engg [SKM],Applied Chem-A [AS],FEEE [PK],LUNCH,Basic Elect Engg-TW [SKM],Sustainability [MK],Activities
+FRI,CE,Comm Skills [SPS],Basic Engg Math [APS],Applied Chem-A Lab [AS],Basic Engg Math [SKP],LUNCH,Applied Chem-A TW [AS],Applied Chem-A TW [AS],Activities
+SAT,CSE,Basic Engg Math [APS],Intro to AI [KP],Applied Chem-A [AS],ICT Tools-TW [NK],LUNCH,Open Edu [NK/YK],Activities,Activities
+SAT,ME,Basic Engg Math [SKP],Comm Skills [SPS],Applied Chem-A [AS],Engg Drawing [AKM],LUNCH,Engg Drawing-TW [AKM],Engg Drawing-TW [AKM],Sports/Activities
+SAT,EE,EE Workshop [Prof. Yogesh],Comm Skills [SPS],Applied Chem-A Lab [AS],Essence of IKS [APS],LUNCH,Professional Ethics [APS],Activities,Activities
+SAT,CE,Applied Chem-A Lab [AS],Engg Mech [MK],Applied Chem-A Lab [AS],Comm Skills Lab [PRS],LUNCH,Applied Phy-B TW [Md. PO],Applied Phy-B TW [Md. PO],Activities
