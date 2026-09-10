@@ -17,7 +17,7 @@
             padding: 20px;
         }
         .container {
-            max-width: 1200px;
+            max-width: 1250px;
             margin: 0 auto;
             background: #fff;
             padding: 25px;
@@ -32,12 +32,12 @@
         }
         header h1 {
             color: #1a365d;
-            font-size: 24px;
+            font-size: 22px;
             margin-bottom: 5px;
         }
         header p {
             color: #666;
-            font-size: 14px;
+            font-size: 13px;
         }
         .room-info {
             display: flex;
@@ -71,6 +71,7 @@
             font-size: 14px;
             outline: none;
             cursor: pointer;
+            background: #fff;
         }
         .table-responsive {
             overflow-x: auto;
@@ -78,12 +79,12 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 13px;
+            font-size: 12px;
             text-align: center;
         }
         th, td {
             border: 1px solid #e2e8f0;
-            padding: 10px 8px;
+            padding: 10px 6px;
             vertical-align: middle;
         }
         th {
@@ -102,7 +103,7 @@
             background-color: #fed7d7 !important;
             color: #9b2c2c;
             font-weight: bold;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
         .day-cell {
             font-weight: bold;
@@ -112,18 +113,6 @@
         .branch-cell {
             font-weight: 600;
             color: #2b6cb0;
-        }
-        @media print {
-            .filter-section {
-                display: none;
-            }
-            body {
-                padding: 0;
-            }
-            .container {
-                box-shadow: none;
-                padding: 0;
-            }
         }
     </style>
 </head>
@@ -145,13 +134,15 @@
     </div>
 
     <div class="filter-section">
-        <label for="branchFilter"><strong>Filter Branch:</strong></label>
+        <label for="branchFilter"><strong>Select Branch:</strong></label>
         <select id="branchFilter" onchange="filterBranch()">
             <option value="ALL">All Branches</option>
+            <option value="EC">EC (Electronics)</option>
             <option value="CSE">CSE</option>
             <option value="ME">ME</option>
             <option value="EE">EE</option>
             <option value="CE">CE</option>
+            <option value="LT">LT (Leather Tech)</option>
         </select>
     </div>
 
@@ -173,6 +164,18 @@
             </thead>
             <tbody>
                 <!-- Monday -->
+                <tr class="data-row" data-branch="EC">
+                    <td class="day-cell">MON</td>
+                    <td class="branch-cell">EC</td>
+                    <td>Applied Chemistry-B Lab [AS]</td>
+                    <td>Basic Engg. Math [APS]</td>
+                    <td>Applied Chem. -A [AS]</td>
+                    <td>Comm. Skills [PRS]</td>
+                    <td class="lunch">LUNCH</td>
+                    <td>Applied Physics-B Lab [Md. O]</td>
+                    <td>Sports, Yoga & Meditation [SPS]</td>
+                    <td>Activities</td>
+                </tr>
                 <tr class="data-row" data-branch="CSE">
                     <td class="day-cell">MON</td>
                     <td class="branch-cell">CSE</td>
@@ -223,6 +226,18 @@
                 </tr>
 
                 <!-- Tuesday -->
+                <tr class="data-row" data-branch="EC">
+                    <td class="day-cell">TUE</td>
+                    <td class="branch-cell">EC</td>
+                    <td>Basic Engg. Math [APS]</td>
+                    <td>Applied Physics-B [Md. O]</td>
+                    <td>Basic Engg. Math [APS]</td>
+                    <td>Comm. Skills (TW) [PRS]</td>
+                    <td class="lunch">LUNCH</td>
+                    <td>Applied Physics-B Lab [Md. O]</td>
+                    <td>Applied Chemistry-B [AS]</td>
+                    <td>Activities</td>
+                </tr>
                 <tr class="data-row" data-branch="CSE">
                     <td class="day-cell">TUE</td>
                     <td class="branch-cell">CSE</td>
@@ -273,6 +288,18 @@
                 </tr>
 
                 <!-- Wednesday -->
+                <tr class="data-row" data-branch="EC">
+                    <td class="day-cell">WED</td>
+                    <td class="branch-cell">EC</td>
+                    <td>Applied Physics-B Lab [Md. O]</td>
+                    <td>Applied Chemistry -A [AS]</td>
+                    <td>Applied Phys-B [Md. PA]</td>
+                    <td>E.Edu.& Sust. Dev. [SS]</td>
+                    <td class="lunch">LUNCH</td>
+                    <td>Sports, Yoga & Meditation [SPS]</td>
+                    <td>Basic Engg. Math (TW) [APS]</td>
+                    <td>Activities</td>
+                </tr>
                 <tr class="data-row" data-branch="CSE">
                     <td class="day-cell">WED</td>
                     <td class="branch-cell">CSE</td>
@@ -321,8 +348,32 @@
                     <td>Engg. Drawing & Graphics [AK]</td>
                     <td>Activities</td>
                 </tr>
+                <tr class="data-row" data-branch="LT">
+                    <td class="day-cell">WED</td>
+                    <td class="branch-cell">LT</td>
+                    <td>Basic Engg. Math [APS]</td>
+                    <td>Comm. Skills [SPS]</td>
+                    <td>Applied Physics-B [Md. O]</td>
+                    <td>Basic Engg. Math [APS]</td>
+                    <td class="lunch">LUNCH</td>
+                    <td>Engg. Drawing & Graphics [AK]</td>
+                    <td>Engg. Drawing & Graphics [AK]</td>
+                    <td>Activities</td>
+                </tr>
 
                 <!-- Thursday -->
+                <tr class="data-row" data-branch="EC">
+                    <td class="day-cell">THU</td>
+                    <td class="branch-cell">EC</td>
+                    <td>Applied Chemistry -B Lab [AS]</td>
+                    <td>Applied Chemistry -B Lab [AS]</td>
+                    <td>Basic Engg. Math [SKP]</td>
+                    <td>Applied Physics-B [Md. PA]</td>
+                    <td class="lunch">LUNCH</td>
+                    <td>Basic Engg. Math [APS]</td>
+                    <td>EE Workshop - TW [VK]</td>
+                    <td>Activities</td>
+                </tr>
                 <tr class="data-row" data-branch="CSE">
                     <td class="day-cell">THU</td>
                     <td class="branch-cell">CSE</td>
@@ -333,7 +384,7 @@
                     <td class="lunch">LUNCH</td>
                     <td>Applied Physics-B Lab [Md. O]</td>
                     <td>Applied Physics-B Lab [Md. O]</td>
-                    <td>Quiz / GD / Activities</td>
+                    <td>Quiz / Activities</td>
                 </tr>
                 <tr class="data-row" data-branch="ME">
                     <td class="day-cell">THU</td>
@@ -373,6 +424,18 @@
                 </tr>
 
                 <!-- Friday -->
+                <tr class="data-row" data-branch="EC">
+                    <td class="day-cell">FRI</td>
+                    <td class="branch-cell">EC</td>
+                    <td>Basic Engg. Math [APS]</td>
+                    <td>Intro. to AI [Prof. Sweta]</td>
+                    <td>Basic Engg. Math [APS]</td>
+                    <td>E. Draw & Graphics - TW [SK]</td>
+                    <td class="lunch">LUNCH</td>
+                    <td>Applied Physics-A [Md. PA]</td>
+                    <td>Intro. to AI - TW [Prof. Sweta]</td>
+                    <td>Activities</td>
+                </tr>
                 <tr class="data-row" data-branch="CSE">
                     <td class="day-cell">FRI</td>
                     <td class="branch-cell">CSE</td>
@@ -412,85 +475,4 @@
                 <tr class="data-row" data-branch="CE">
                     <td class="day-cell">FRI</td>
                     <td class="branch-cell">CE</td>
-                    <td>Comm. Skills (L+TW) [SPS]</td>
-                    <td>Basic Engg. Math [APS]</td>
-                    <td>Applied Chem. -A Lab [AS]</td>
-                    <td>Basic Engg. Math / Constitution</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Applied Chemistry -A (TW) [AS]</td>
-                    <td>Applied Chemistry -A (TW) [AS]</td>
-                    <td>Activities</td>
-                </tr>
-
-                <!-- Saturday -->
-                <tr class="data-row" data-branch="CSE">
-                    <td class="day-cell">SAT</td>
-                    <td class="branch-cell">CSE</td>
-                    <td>Basic Engg. Math [APS]</td>
-                    <td>Introduction to AI [KP]</td>
-                    <td>Applied Chem. -A [AS]</td>
-                    <td>ICT Tools - TW [NK]</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Open Edu. (CIS/KYP/ST) [NK/YK]</td>
-                    <td>Activities</td>
-                    <td>Activities</td>
-                </tr>
-                <tr class="data-row" data-branch="ME">
-                    <td class="day-cell">SAT</td>
-                    <td class="branch-cell">ME</td>
-                    <td>Basic Engg. Math [SKP]</td>
-                    <td>Comm. Skills [SPS]</td>
-                    <td>Applied Chemistry -A [AS]</td>
-                    <td>Engg Drawing [AKM]</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Engg. Drawing - TW [AKM]</td>
-                    <td>Engg. Drawing - TW [AKM]</td>
-                    <td>Activities</td>
-                </tr>
-                <tr class="data-row" data-branch="EE">
-                    <td class="day-cell">SAT</td>
-                    <td class="branch-cell">EE</td>
-                    <td>EE Workshop [Prof. Yogesh]</td>
-                    <td>Comm. Skills [SPS]</td>
-                    <td>Applied Chem. -A Lab [AS]</td>
-                    <td>Essence of IKS [APS]</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Professional Ethics [APS]</td>
-                    <td>Activities</td>
-                    <td>Activities</td>
-                </tr>
-                <tr class="data-row" data-branch="CE">
-                    <td class="day-cell">SAT</td>
-                    <td class="branch-cell">CE</td>
-                    <td>Applied Chem. -A Lab [AS]</td>
-                    <td>Engineering Mech. [MK]</td>
-                    <td>Applied Chem. -A Lab [AS]</td>
-                    <td>Comm. Skills Lab [PRS]</td>
-                    <td class="lunch">LUNCH</td>
-                    <td>Applied Physics-B - TW [Md. PO]</td>
-                    <td>Applied Physics-B - TW [Md. PO]</td>
-                    <td>Activities</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<script>
-    function filterBranch() {
-        const filter = document.getElementById('branchFilter').value;
-        const rows = document.querySelectorAll('.data-row');
-        
-        rows.forEach(row => {
-            const branch = row.getAttribute('data-branch');
-            if (filter === 'ALL' || branch === filter) {
-                row.style.display = '';
-            } else {
-                row.style.display = 'none';
-            }
-        });
-    }
-</script>
-
-</body>
-</html>
+                    <t
