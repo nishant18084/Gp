@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Animated Login Form</title>
+  <title>Login - Welcome Back</title>
   <style>
     * {
       box-sizing: border-box;
@@ -13,214 +13,170 @@
     }
 
     body {
-      min-height: 100vh;
+      background-color: #f7a261;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #f4a261;
+      min-height: 100vh;
       padding: 20px;
     }
 
     .login-card {
-      width: 100%;
-      max-width: 380px;
       background: #ffffff;
+      width: 100%;
+      max-width: 360px;
       border-radius: 28px;
-      padding: 36px 30px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-      text-align: center;
-      transition: transform 0.2s ease;
+      padding: 40px 24px 32px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    /* Shake Animation for Wrong Credentials */
-    .shake {
-      animation: shakeCard 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-    }
-
-    @keyframes shakeCard {
-      10%, 90% { transform: translate3d(-3px, 0, 0); }
-      20%, 80% { transform: translate3d(5px, 0, 0); }
-      30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
-      40%, 60% { transform: translate3d(6px, 0, 0); }
-    }
-
-    .avatar-wrapper {
+    .avatar-box {
       width: 90px;
       height: 90px;
-      background: #ffe8d6;
+      background-color: #fcebd9;
       border-radius: 50%;
-      margin: 0 auto 20px auto;
       display: flex;
-      align-items: center;
       justify-content: center;
-      font-size: 42px;
-      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-      box-shadow: inset 0 2px 6px rgba(0,0,0,0.08);
+      align-items: center;
+      font-size: 45px;
+      margin-bottom: 20px;
+      user-select: none;
+      transition: all 0.2s ease;
     }
 
     h2 {
-      color: #264653;
-      font-size: 24px;
+      color: #1e3a4c;
+      font-size: 1.5rem;
       font-weight: 700;
       margin-bottom: 6px;
     }
 
-    p.subtitle {
-      color: #7b8794;
-      font-size: 13px;
-      margin-bottom: 26px;
+    .subtitle {
+      color: #7b8b95;
+      font-size: 0.9rem;
+      margin-bottom: 28px;
     }
 
-    .input-box {
+    .form-group {
+      width: 100%;
       position: relative;
-      margin-bottom: 18px;
-      text-align: left;
+      margin-bottom: 16px;
     }
 
-    .input-box input {
+    .input-field {
       width: 100%;
       padding: 14px 18px;
-      border-radius: 14px;
-      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      border: 1.5px solid #d9e2ec;
       outline: none;
-      font-size: 14px;
-      color: #2d3748;
-      background: #f8fafc;
-      transition: all 0.25s ease;
-    }
-
-    .input-box input:focus {
-      border-color: #e76f51;
+      font-size: 0.95rem;
+      color: #334e68;
       background: #ffffff;
-      box-shadow: 0 0 0 4px rgba(231, 111, 81, 0.15);
+      transition: border-color 0.2s ease;
     }
 
-    /* Eye Toggle Icon Button */
-    .toggle-pass-btn {
+    .input-field:focus {
+      border-color: #f07f5e;
+    }
+
+    .toggle-password {
       position: absolute;
       right: 14px;
       top: 50%;
       transform: translateY(-50%);
-      background: none;
-      border: none;
-      font-size: 18px;
       cursor: pointer;
-      opacity: 0.6;
-      padding: 4px;
+      font-size: 1.1rem;
+      opacity: 0.5;
+      user-select: none;
     }
 
-    .toggle-pass-btn:hover {
-      opacity: 1;
-    }
-
-    .submit-btn {
+    .btn-submit {
       width: 100%;
       padding: 14px;
-      border-radius: 14px;
-      border: none;
-      background: #2a9d8f;
+      background-color: #2a9d8f;
       color: #ffffff;
-      font-size: 15px;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
-      margin-top: 10px;
-      transition: all 0.2s ease;
+      margin-top: 8px;
+      transition: background-color 0.2s ease;
     }
 
-    .submit-btn:active {
-      transform: scale(0.98);
+    .btn-submit:active {
+      background-color: #21867a;
     }
   </style>
 </head>
 <body>
 
-  <div class="login-card" id="card">
-    <div class="avatar-wrapper" id="avatar">🐵</div>
+  <div class="login-card">
+    <div class="avatar-box" id="avatar">🐵</div>
+    
     <h2>Welcome Back</h2>
     <p class="subtitle">Please enter your details to sign in</p>
 
-    <form onsubmit="handleLogin(event)">
-      <div class="input-box">
-        <input 
-          type="text" 
-          id="username" 
-          placeholder="Username or Email" 
-          required 
-          onfocus="onUsernameFocus()" 
-          onblur="onFieldBlur()"
-        >
+    <form id="loginForm" style="width: 100%;">
+      <div class="form-group">
+        <input type="text" id="username" class="input-field" placeholder="Username or Email" required autocomplete="off">
       </div>
 
-      <div class="input-box">
-        <input 
-          type="password" 
-          id="password" 
-          placeholder="Password" 
-          required 
-          onfocus="onPasswordFocus()" 
-          onblur="onFieldBlur()"
-        >
-        <button type="button" class="toggle-pass-btn" onclick="togglePasswordVisibility()">👁️</button>
+      <div class="form-group">
+        <input type="password" id="password" class="input-field" placeholder="Password" required>
+        <span class="toggle-password" id="togglePass">👁️</span>
       </div>
 
-      <button type="submit" class="submit-btn">Sign In</button>
+      <button type="submit" class="btn-submit">Sign In</button>
     </form>
   </div>
 
   <script>
     const avatar = document.getElementById('avatar');
     const passwordInput = document.getElementById('password');
-    const card = document.getElementById('card');
-    let isPasswordVisible = false;
+    const togglePass = document.getElementById('togglePass');
+    const loginForm = document.getElementById('loginForm');
 
-    function onUsernameFocus() {
-      avatar.innerText = '🐵';
-      avatar.style.transform = 'scale(1.08) rotate(-3deg)';
-    }
+    // Monkey aankhein band karega jab password type ho
+    passwordInput.addEventListener('focus', () => {
+      avatar.textContent = '🙈';
+    });
 
-    function onPasswordFocus() {
-      if (isPasswordVisible) {
-        avatar.innerText = '🫣'; // Password dikh raha ho toh jhaankne lagega
-      } else {
-        avatar.innerText = '🙈'; // Password chhipa ho toh aankhein band
-      }
-      avatar.style.transform = 'scale(1.05)';
-    }
+    passwordInput.addEventListener('blur', () => {
+      avatar.textContent = '🐵';
+    });
 
-    function onFieldBlur() {
-      avatar.innerText = '🐵';
-      avatar.style.transform = 'scale(1)';
-    }
-
-    function togglePasswordVisibility() {
-      isPasswordVisible = !isPasswordVisible;
-
-      if (isPasswordVisible) {
+    // Show / Hide Password
+    togglePass.addEventListener('click', () => {
+      if (passwordInput.type === 'password') {
         passwordInput.type = 'text';
-        avatar.innerText = '🫣'; // Ek aankh khol kar jhaankna
+        avatar.textContent = '🐵';
       } else {
         passwordInput.type = 'password';
-        avatar.innerText = '🙈'; // Dono aankhein band
+        avatar.textContent = '🙈';
       }
-    }
+    });
 
-    function handleLogin(e) {
+    // Login Validation & Redirect
+    loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const pass = passwordInput.value;
+      
+      const username = document.getElementById('username').value.trim();
+      const password = passwordInput.value.trim();
 
-      // Demo condition: Agar password '1234' na ho toh shake karega
-      if (pass !== '1234') {
-        avatar.innerText = '🙉'; // Kaan band / mana karne ka expression
-        card.classList.add('shake');
-        setTimeout(() => {
-          card.classList.remove('shake');
-          avatar.innerText = '🐵';
-        }, 500);
+      if (username === "Admin" && password === "1234") {
+        avatar.textContent = '🎉';
+        
+        // Alert aane ke baad OK karte hi dashboard par le jayega
+        alert("Welcome! Login successful.");
+        window.location.href = "dashboard.html";
       } else {
-        avatar.innerText = '🎉';
-        alert('Welcome! Login successful.');
+        alert("Invalid Username or Password!");
       }
-    }
+    });
   </script>
 
 </body>
