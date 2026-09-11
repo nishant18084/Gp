@@ -1,565 +1,156 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Routine - Govt. Polytechnic Muzaffarpur</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            background-color: #f1f5f9;
-            color: #1e293b;
-            padding: 12px;
-        }
-        .container {
-            max-width: 1150px;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            padding: 18px;
-        }
-        header {
-            text-align: center;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 12px;
-            margin-bottom: 15px;
-        }
-        header h1 {
-            color: #0f172a;
-            font-size: 18px;
-            font-weight: 800;
-            text-transform: uppercase;
-        }
-        header p {
-            color: #64748b;
-            font-size: 12px;
-            margin-top: 4px;
-        }
-        /* Selection Controls */
-        .controls-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            background: #f8fafc;
-            border: 1px solid #cbd5e1;
-            padding: 12px;
-            border-radius: 10px;
-            margin-bottom: 14px;
-        }
-        .control-group {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-        .control-group label {
-            font-size: 13px;
-            font-weight: 700;
-            color: #334155;
-        }
-        select {
-            width: 100%;
-            padding: 9px 12px;
-            border: 2px solid #2563eb;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #1e293b;
-            background-color: #fff;
-            outline: none;
-            cursor: pointer;
-        }
-        .info-strip {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #1e40af;
-            color: #fff;
-            padding: 10px 15px;
-            border-radius: 8px;
-            margin-bottom: 14px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-        .room-badge {
-            background: #fef08a;
-            color: #854d0e;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-        /* Table Layout for All Days */
-        .table-wrapper {
-            overflow-x: auto;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 12px;
-            text-align: center;
-            min-width: 820px;
-        }
-        th, td {
-            border: 1px solid #cbd5e1;
-            padding: 8px 6px;
-            vertical-align: middle;
-        }
-        th {
-            background-color: #334155;
-            color: #fff;
-            font-weight: 600;
-            white-space: nowrap;
-        }
-        tr:nth-child(even) td {
-            background-color: #f8fafc;
-        }
-        tr:hover td {
-            background-color: #eff6ff;
-        }
-        .day-badge {
-            font-weight: 800;
-            background-color: #e2e8f0 !important;
-            color: #0f172a;
-            width: 60px;
-        }
-        .lunch-cell {
-            background-color: #fee2e2 !important;
-            color: #991b1b;
-            font-weight: bold;
-            font-size: 11px;
-            letter-spacing: 1px;
-            width: 55px;
-        }
-        /* Cards Layout for Single Day */
-        .single-day-view {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .period-card {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #fff;
-            border: 1px solid #e2e8f0;
-            border-left: 5px solid #2563eb;
-            padding: 12px 14px;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-        .period-time {
-            font-size: 12px;
-            font-weight: 700;
-            color: #64748b;
-            min-width: 95px;
-        }
-        .period-subject {
-            font-size: 13.5px;
-            font-weight: 600;
-            color: #0f172a;
-            text-align: right;
-        }
-        .period-card.lunch {
-            border-left-color: #ef4444;
-            background: #fff5f5;
-        }
-        .period-card.lunch .period-subject {
-            color: #dc2626;
-            font-weight: 700;
-        }
-        @media (max-width: 600px) {
-            .controls-grid {
-                grid-template-columns: 1fr;
-            }
-            .info-strip {
-                flex-direction: column;
-                gap: 5px;
-                text-align: center;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Login Form</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f4a261; /* Screenshot jaisa warm aesthetic background */
+      padding: 20px;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 380px;
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 36px 30px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+
+    /* Interactive Character/Avatar Area */
+    .avatar-wrapper {
+      width: 90px;
+      height: 90px;
+      background: #ffe8d6;
+      border-radius: 50%;
+      margin: 0 auto 20px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 42px;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    .login-card:focus-within .avatar-wrapper {
+      transform: scale(1.1) rotate(-4deg);
+    }
+
+    h2 {
+      color: #264653;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    p.subtitle {
+      color: #7b8794;
+      font-size: 13px;
+      margin-bottom: 26px;
+    }
+
+    .input-box {
+      position: relative;
+      margin-bottom: 18px;
+      text-align: left;
+    }
+
+    .input-box input {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 14px;
+      border: 2px solid #e2e8f0;
+      outline: none;
+      font-size: 14px;
+      color: #2d3748;
+      background: #f8fafc;
+      transition: all 0.25s ease;
+    }
+
+    .input-box input:focus {
+      border-color: #e76f51;
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(231, 111, 81, 0.15);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      border-radius: 14px;
+      border: none;
+      background: #2a9d8f;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: all 0.2s ease;
+    }
+
+    .submit-btn:hover {
+      background: #21867a;
+      transform: translateY(-1px);
+    }
+
+    .submit-btn:active {
+      transform: scale(0.98);
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <h1>GOVERNMENT POLYTECHNIC MUZAFFARPUR</h1>
-        <p>Time-Table of Sem-1 (w.e.f. July 25, 2025) Updated on 06-08-2026</p>
-    </header>
+  <div class="login-card">
+    <div class="avatar-wrapper" id="avatar">👨‍💼</div>
+    <h2>Welcome Back</h2>
+    <p class="subtitle">Please enter your details to sign in</p>
 
-    <!-- Selection Menu -->
-    <div class="controls-grid">
-        <div class="control-group">
-            <label for="branchSelect">1. Branch Chune:</label>
-            <select id="branchSelect" onchange="renderView()">
-                <option value="EC" selected>EC (Electronics Engg.)</option>
-                <option value="CSE">CSE (Computer Science & Engg.)</option>
-                <option value="EE">EE (Electrical Engg.)</option>
-                <option value="CE">CE (Civil Engg.)</option>
-                <option value="ME">ME (Mechanical Engg.)</option>
-                <option value="LT">LT (Leather Technology)</option>
-            </select>
-        </div>
-        <div class="control-group">
-            <label for="daySelect">2. Din (Day) Chune:</label>
-            <select id="daySelect" onchange="renderView()">
-                <option value="ALL" selected>Poora Hafta (All Days)</option>
-                <option value="MON">Monday (Somwar)</option>
-                <option value="TUES">Tuesday (Mangalwar)</option>
-                <option value="WED">Wednesday (Budhwar)</option>
-                <option value="THUS">Thursday (Guruwar)</option>
-                <option value="FRI">Friday (Shukrawar)</option>
-                <option value="SAT">Saturday (Shaniwar)</option>
-            </select>
-        </div>
-    </div>
+    <form onsubmit="handleLogin(event)">
+      <div class="input-box">
+        <input type="text" id="username" placeholder="Username or Email" required onfocus="setAvatar('typing')" onblur="setAvatar('normal')">
+      </div>
 
-    <!-- Room / Branch Info -->
-    <div class="info-strip">
-        <span id="selectedBranchName">Electronics Engineering (EC)</span>
-        <span class="room-badge" id="selectedRoom">Theory Room: 209</span>
-    </div>
+      <div class="input-box">
+        <input type="password" id="password" placeholder="Password" required onfocus="setAvatar('blind')" onblur="setAvatar('normal')">
+      </div>
 
-    <!-- Routine Container -->
-    <div id="contentArea"></div>
-</div>
+      <button type="submit" class="submit-btn">Sign In</button>
+    </form>
+  </div>
 
-<script>
-// Official Image Exact Data
-const routineData = {
-    "EC": {
-        name: "Electronics Engineering (EC)",
-        room: "Theory Room: 209",
-        schedule: {
-            "MON": [
-                "Applied Chemistry-B Lab [AS]",
-                "Applied Chemistry-B Lab [AS]",
-                "Applied Chemistry-B [AS]",
-                "Engineering Mech. [MK]",
-                "Applied Physics-B Lab [Md. O]",
-                "Applied Physics-B Lab [Md. O]",
-                "Applied Chemistry-B(TW) [AS]"
-            ],
-            "TUES": [
-                "Applied Physics-B [Md. O]",
-                "Engineering Mech. [MK]",
-                "Basic Engg. Math. [SKP]",
-                "E.Edu. & Sust. Dev. [SS]",
-                "Applied Physics-B Lab [Md. O]",
-                "Applied Physics-B Lab [Md. O]",
-                "Applied Chemistry-B [AS]"
-            ],
-            "WED": [
-                "Engineering Mechanics Lab [MK]",
-                "Engineering Mechanics Lab [MK]",
-                "Basic Engg. Math. [SKP]",
-                "E.Edu. & Sust. Dev.-Lab [SS]",
-                "Engg. Drawing & Graphics [AK]",
-                "Engg. Drawing & Graphics [AK]",
-                "Engineering Mech.-TW [MK]"
-            ],
-            "THUS": [
-                "Applied Physics-B [Md. O]",
-                "Basic Engg. Math. [SKP]",
-                "Applied Chemistry-B Lab [AS]",
-                "Applied Chemistry-B Lab [AS]",
-                "Electrical & Electronics Workshop [YK]",
-                "Electrical & Electronics Workshop [YK]",
-                "Engineering Mech.-TW [MK]"
-            ],
-            "FRI": [
-                "Electrical & Electronics Work. [Prof. Yogesh Kumar]",
-                "Electrical & Electronics Work. [Prof. Yogesh Kumar]",
-                "Applied Physics-B(L+TW) [Md. O]",
-                "Applied Physics-B(L+TW) [Md. O]",
-                "Engg. Drawing & Graphics [AK]",
-                "Engg. Drawing & Graphics [AK]",
-                "Applied Physics-B-TW [Md. PO]"
-            ],
-            "SAT": [
-                "Engineering Mech. [MK]",
-                "Engineering Mechanics Lab [MK]",
-                "Engineering Mechanics Lab [MK]",
-                "Applied Chemistry-B [AS]",
-                "B Engg. Math.(TW) [SKP]",
-                "Quiz / GD / Sports / Cultural Activities",
-                "Quiz / GD / Sports / Cultural Activities"
-            ]
-        }
-    },
-    "CSE": {
-        name: "Computer Science & Engineering (CSE)",
-        room: "Theory Room: 211",
-        schedule: {
-            "MON": [
-                "FEEE [PK]",
-                "Applied Physics-B [Md. O]",
-                "Fund. of Electrical & Electronics Engg. Lab [PK]",
-                "Fund. of Electrical & Electronics Engg. Lab [PK]",
-                "Introduction to AI [KP]",
-                "ICT Tools Lab [NK]",
-                "ICT Tools Lab [NK]"
-            ],
-            "TUES": [
-                "Basic Engg. Math. [SKP]",
-                "FEEE [PK]",
-                "Introduction to AI [KP]",
-                "Introduction to AI-TW [KP]",
-                "FEEE(TW) [PK]",
-                "EE Work-TW [VK]",
-                "EE Work-TW [VK]"
-            ],
-            "WED": [
-                "Introduction to AI Lab [KP]",
-                "Introduction to AI Lab [KP]",
-                "Applied Physics-B Lab [Md. O]",
-                "Applied Physics-B Lab [Md. O]",
-                "Basic Engg. Math.(TW) [SKP]",
-                "Electrical & Electronics Workshop [VK]",
-                "Electrical & Electronics Workshop [VK]"
-            ],
-            "THUS": [
-                "Fund. of Electrical & Electronics Engg. Lab [PK]",
-                "Fund. of Electrical & Electronics Engg. Lab [PK]",
-                "Applied Physics-B [Md. O]",
-                "FEEE [PK]",
-                "Basic Engg. Math. [SKP]",
-                "ICT Tools Lab [NK]",
-                "ICT Tools Lab [NK]"
-            ],
-            "FRI": [
-                "Introduction to AI Lab [KP]",
-                "Introduction to AI Lab [KP]",
-                "Basic Engg. Math. [SKP]",
-                "Indian Constitution [SKP]",
-                "Open Edu. (Cis/kyp/ST) [NK/YK]",
-                "Electrical & Electronics Workshop [VK]",
-                "Electrical & Electronics Workshop [VK]"
-            ],
-            "SAT": [
-                "Applied Physics-B Lab [Md. O]",
-                "Applied Physics-B Lab [Md. O]",
-                "Introduction to AI [KP]",
-                "ICT Tools-TW [NK]",
-                "Applied Physics-B [Md. O]",
-                "Quiz / GD / Sports / Cultural Activities",
-                "Quiz / GD / Sports / Cultural Activities"
-            ]
-        }
-    },
-    "EE": {
-        name: "Electrical Engineering (EE)",
-        room: "Theory Room: 403",
-        schedule: {
-            "MON": [
-                "Appl. Phy.-B [Md. PA]",
-                "Basic Engg. Math. [APS]",
-                "Introduction to AI Lab [KP]",
-                "Introduction to AI Lab [KP]",
-                "Electrical & Electronics Workshop [SPK]",
-                "Electrical & Electronics Workshop [SPK]",
-                "Basic Elect. Engg.-TW [SKM]"
-            ],
-            "TUES": [
-                "Introduction to AI [KP]",
-                "Basic Elect. Engg. [SKM]",
-                "Basic Electrical Engg. Lab [SKM]",
-                "Basic Electrical Engg. Lab [SKM]",
-                "Electrical & Electronics Workshop [SPK]",
-                "Electrical & Electronics Workshop [SPK]",
-                "E & E Workshop-TW [SPK]"
-            ],
-            "WED": [
-                "Basic Engg. Math. [APS]",
-                "B. Elect. Engg. [SKM]",
-                "Applied Phys-B [Md. PA]",
-                "Introduction to AI [KP]",
-                "Engg. Drawing & Graphics [AK]",
-                "Engg. Drawing & Graphics [AK]",
-                "Appl. Phy.-B-TW [Md. PA]"
-            ],
-            "THUS": [
-                "Basic Engg. Math.-TW [APS]",
-                "Basic Elect. Engg. [SKM]",
-                "Applied Physics-B Lab [Md. PA]",
-                "Applied Physics-B Lab [Md. PA]",
-                "Applied Physics-B [Md. PA]",
-                "Sports, Yoga & Meditation [SPS]",
-                "Sports, Yoga & Meditation [SPS]"
-            ],
-            "FRI": [
-                "Introduction to AI [KP]",
-                "Basic Engg. Math. [APS]",
-                "Basic Electrical Engg. Lab [SKM]",
-                "Basic Electrical Engg. Lab [SKM]",
-                "Engg. Drawing & Graphics [AK]",
-                "Engg. Drawing & Graphics [AK]",
-                "Open Edu. (Cis/kyp/ST) [NK/YK]"
-            ],
-            "SAT": [
-                "Introduction to AI Lab [KP]",
-                "Introduction to AI Lab [KP]",
-                "Applied Physics-B Lab [Md. PA]",
-                "Applied Physics-B Lab [Md. PA]",
-                "Introduction to AI [KP]",
-                "Quiz / GD / Sports / Cultural Activities",
-                "Quiz / GD / Sports / Cultural Activities"
-            ]
-        }
-    },
-    "CE": {
-        name: "Civil Engineering (CE)",
-        room: "Theory Room: 406",
-        schedule: {
-            "MON": [
-                "Fund. Of Mech Engg [AK]",
-                "C Skills Lab(01-60) [PRS] / Mech. Work(61-120) [RK]",
-                "C Skills Lab(01-60) [PRS] / Mech. Work(61-120) [RK]",
-                "xxxxxxxxxxxxxxx",
-                "Applied Chemistry-A [AS]",
-                "Basic Engg. Math. [APS]",
-                "xxxxxxxxxxxxxxx"
-            ],
-            "TUES": [
-                "Basic Engg. Math. [APS]",
-                "Applied Chem. -A [AS]",
-                "Chem-A Lab(61-120) [AS] / FME Lab(01-60) [AK]",
-                "Chem-A Lab(61-120) [AS] / FME Lab(01-60) [AK]",
-                "Sports, Yoga & Meditation [SPS]",
-                "Sports, Yoga & Meditation [SPS]",
-                "xxxxxxxxxxxxxxx"
-            ],
-            "WED": [
-                "Comm. Skills [SPS]",
-                "Basic Engg. Math. [APS]",
-                "Chem-A Lab(01-60) [AS] / FME Lab(61-120) [AK]",
-                "Chem-A Lab(01-60) [AS] / FME Lab(61-120) [AK]",
-                "Applied Chemistry-A [AS]",
-                "Mech. Work-TW [RK]",
-                "Mech. Work-TW [RK]"
-            ],
-            "THUS": [
-                "Comm. Skills(L+TW) [SPS]",
-                "Comm. Skills(L+TW) [SPS]",
-                "E. Draw & Graphics-TW [SK]",
-                "E. Draw & Graphics-TW [SK]",
-                "B Engg. Math.-TW [APS]",
-                "xxxxxxxxxxxxxxx",
-                "xxxxxxxxxxxxxxx"
-            ],
-            "FRI": [
-                "Fund. Of Mech Engg(L+TW) [AK]",
-                "Fund. Of Mech Engg(L+TW) [AK]",
-                "Engg. Drw. & Graph.[SK](01-60) / Chem-A Lab[AS](61-120)",
-                "Engg. Drw. & Graph.[SK](01-60) / Chem-A Lab[AS](61-120)",
-                "Professional Ethics [APS]",
-                "Chem-A Lab(01-60) [AS] / FME Lab(61-120) [AK]",
-                "Chem-A Lab(01-60) [AS] / FME Lab(61-120) [AK]"
-            ],
-            "SAT": [
-                "Comm. Skills [SPS]",
-                "Fund. Of Mech Engg [AK]",
-                "Engg. Draw & Graphics(SK)(61-120) / FME Lab(AK)(01-60)",
-                "Engg. Draw & Graphics(SK)(61-120) / FME Lab(AK)(01-60)",
-                "C Skills Lab(61-120) [PRS] / Mech. Work(01-60) [RK]",
-                "C Skills Lab(61-120) [PRS] / Mech. Work(01-60) [RK]",
-                "Quiz / GD / Sports / Cultural Activities"
-            ]
-        }
-    },
-    "ME": {
-        name: "Mechanical Engineering (ME)",
-        room: "Theory Room: 408",
-        schedule: {
-            "MON": [
-                "Intro. to AI Lab [Prof. Sweta]",
-                "Intro. to AI Lab [Prof. Sweta]",
-                "Basic Engg. Math. [APS]",
-                "Applied Chem. -A [AS]",
-                "Comm. Skills [PRS]",
-                "Comm. Skills(TW) [PRS]",
-                "xxxxxxxxxxxxxxx"
-            ],
-            "TUES": [
-                "Intro. to AI Lab [Prof. Sweta]",
-                "Intro. to AI Lab [Prof. Sweta]",
-                "Intro. to AI [Prof. Sweta]",
-                "Engg Drawing [AKM]",
-                "Applied Chemistry-A [AS]",
-                "Basic Engg. Math.-L+TW/TW [APS]",
-                "Basic Engg. Math.-L+TW/TW [APS]"
-            ],
-            "WED": [
-                "Engg Drawing [AKM]",
-                "Intro. to AI [Prof. Sweta]",
-                "E.Edu. & Sust. Dev.-Lab [SS]",
-                "Basic Engg. Math. [APS]",
-                "E.Edu. & Sust. Dev. [SS]",
-                "Applied Chemistry-A(L+TW) [AS]",
-                "Applied Chemistry-A(L+TW) [AS]"
-            ],
-            "THUS": [
-                "Engg. Drawing Lab [AKM]",
-                "Engg. Drawing Lab [AKM]",
-                "Intro. to AI [Prof. Sweta]",
-                "Comm. Skills [PRS]",
-                "Comm. Skills Lab [PRS]",
-                "Comm. Skills Lab [PRS]",
-                "xxxxxxxxxxxxxxx"
-            ],
-            "FRI": [
-                "Applied Chemistry-A Lab [AS]",
-                "Applied Chemistry-A Lab [AS]",
-                "Comm. Skills Lab [PRS]",
-                "Comm. Skills Lab [PRS]",
-                "Engg. Drawing Lab [AKM]",
-                "Engg. Drawing Lab [AKM]",
-                "Engg. Drawing-TW [AKM]"
-            ],
-            "SAT": [
-                "Applied Chemistry-A Lab [AS]",
-                "Applied Chemistry-A Lab [AS]",
-                "Comm. Skills [PRS]",
-                "Engg Drawing [AKM]",
-                "Intro. to AI TW [Prof. Sweta]",
-                "Quiz / GD / Sports / Cultural Activities",
-                "Quiz / GD / Sports / Cultural Activities"
-            ]
-        }
-    },
-    "LT": {
-        name: "Leather Technology (LT)",
-        room: "Theory Room: 104",
-        schedule: {
-            "MON": [
-                "Introduction to AI Lab [AK]",
-                "Introduction to AI Lab [AK]",
-                "Applied Physics-A Lab [Md. PA]",
-                "Applied Physics-A Lab [Md. PA]",
-                "Basic Engg. Math. [SKP]",
-                "Indian Constitution [SKP]",
-                "xxxxxxxxxxxxxxx"
-            ],
-            "TUES": [
-                "Introduction to AI Lab [AK]",
-                "Introduction to AI Lab [AK]",
-                "Comm. Skills [PRS]",
-                "Basic Engg. Math. [SKP]",
-                "Applied Physics-A Lab [Md. PA]",
-                "Applied Physics-A Lab [Md. PA]",
-                "xxxxxxxxxxxxxxx"
-            ],
-            "WED": [
-                "Applied Physics-A [Md. PA]",
-                "Applied Chemistry-A [AS]",
-                "Comm. Skills [PRS]",
-                "Comm. Skills(TW) [PRS]",
-                "Sports, Yoga & Medi
+  <script>
+    const avatar = document.getElementById('avatar');
+
+    function setAvatar(state) {
+      if (state === 'blind') {
+        avatar.innerText = '🙈'; // Password type karte waqt aankh band
+      } else if (state === 'typing') {
+        avatar.innerText = '🧐'; // Email daalte waqt focus
+      } else {
+        avatar.innerText = '👨‍💼'; // Normal briefcase man
+      }
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      avatar.innerText = '🎉';
+      alert('Login Successful!');
+      setTimeout(() => setAvatar('normal'), 2000);
+    }
+  </script>
+
+</body>
+</html>
