@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background-color: #f1f5f9;
+      color: #334155;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: #ffffff;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e2e8f0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .brand {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logout-btn {
+      background-color: #fee2e2;
+      color: #dc2626;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: 0.2s ease;
+    }
+
+    .logout-btn:hover {
+      background-color: #fecaca;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px 16px;
+      flex: 1;
+    }
+
+    .welcome-header {
+      margin-bottom: 24px;
+    }
+
+    .welcome-header h1 {
+      font-size: 1.6rem;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .welcome-header p {
+      color: #64748b;
+      font-size: 0.95rem;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .stat-card {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .stat-card .title {
+      font-size: 0.85rem;
+      color: #64748b;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .stat-card .value {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 6px;
+    }
+
+    .stat-card .badge {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+      background: #dcfce7;
+      color: #16a34a;
+    }
+
+    /* Table Section */
+    .section-card {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .section-card h2 {
+      font-size: 1.1rem;
+      color: #0f172a;
+      margin-bottom: 16px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 0.9rem;
+    }
+
+    th {
+      color: #64748b;
+      font-weight: 600;
+    }
+
+    .status-active {
+      color: #16a34a;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <header class="navbar">
+    <div class="brand">⚡ Admin Panel</div>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </header>
+
+  <!-- Content Container -->
+  <main class="container">
+    <div class="welcome-header">
+      <h1>Dashboard</h1>
+      <p>Aapka account successfully load ho chuka hai.</p>
+    </div>
+
+    <!-- Cards Row -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="title">Total Visits</div>
+        <div class="value">14,280</div>
+        <span class="badge">+12% is hafte</span>
+      </div>
+      <div class="stat-card">
+        <div class="title">Registered Users</div>
+        <div class="value">1,042</div>
+        <span class="badge">+5 new</span>
+      </div>
+      <div class="stat-card">
+        <div class="title">Server Status</div>
+        <div class="value" style="color: #16a34a;">Online</div>
+        <span class="badge">99.9% Uptime</span>
+      </div>
+    </div>
+
+    <!-- Recent Activity Table -->
+    <div class="section-card">
+      <h2>Recent Logins</h2>
+      <div style="overflow-x: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Role</th>
+              <th>IP / Host</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Admin</td>
+              <td>Administrator</td>
+              <td>nishant18084.github.io</td>
+              <td><span class="status-active">Active Now</span></td>
+            </tr>
+            <tr>
+              <td>Guest</td>
+              <td>Viewer</td>
+              <td>192.168.1.1</td>
+              <td>Logged Out</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function logout() {
+      // Wapas login page par le jane ke liye
+      window.location.href = "index.html";
+    }
+  </script>
+
+</body>
+</html>
