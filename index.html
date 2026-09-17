@@ -2,84 +2,307 @@
 <html lang="hi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>PROJECT://ZERO</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    html, body {
+      width: 100%;
+      min-height: 100vh;
+      background-color: #030712;
+      background-image: radial-gradient(circle at 50% 20%, #064e3b 0%, #030712 80%);
+      color: #f8fafc;
+    }
     body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background: radial-gradient(circle at top, #0f2b26 0%, #030712 65%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+    }
+
+    /* Navigation Bar */
+    header {
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .logo {
+      font-size: clamp(1.1rem, 4vw, 1.3rem);
+      font-weight: 800;
+      color: #34d399;
+      letter-spacing: 1.5px;
+      text-decoration: none;
+    }
+    .nav-link {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: #34d399;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+    }
+    .badge {
+      font-size: clamp(0.7rem, 2vw, 0.8rem);
+      padding: 4px 10px;
+      border-radius: 9999px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid #10b981;
+      color: #34d399;
+      font-weight: 700;
+    }
+
+    /* More Menu Button & Dropdown */
+    .more-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #f8fafc;
+      padding: 6px 12px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 42px;
+      right: 0;
+      width: 170px;
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 14px;
+      padding: 6px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+      z-index: 100;
+    }
+    .dropdown-menu.show {
+      display: block;
+    }
+    .dropdown-item {
+      display: block;
+      padding: 10px 12px;
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: background 0.15s;
+    }
+    .dropdown-item:hover {
+      background: rgba(52, 211, 153, 0.15);
+      color: #34d399;
+    }
+
+    /* Main Hero */
+    main {
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin: auto 0;
+      padding: 24px 0;
+    }
+    .pill {
+      font-size: clamp(0.8rem, 3vw, 0.95rem);
+      padding: 8px 18px;
+      border-radius: 9999px;
+      background: #0f172a;
+      border: 1px solid rgba(52, 211, 153, 0.4);
+      color: #34d399;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    h1 {
+      font-size: clamp(1.8rem, 7vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1.25;
+      margin-bottom: 18px;
+      width: 100%;
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, #34d399, #22d3ee);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p.desc {
+      font-size: clamp(0.95rem, 3.5vw, 1.15rem);
+      color: #94a3b8;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      max-width: 480px;
+    }
+    .btn {
+      width: 100%;
+      max-width: 360px;
+      padding: 16px 24px;
+      font-size: clamp(1rem, 4vw, 1.2rem);
+      font-weight: 800;
+      border-radius: 16px;
+      border: none;
+      background: linear-gradient(90deg, #10b981, #06b6d4);
+      color: #022c22;
+      cursor: pointer;
+      box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.4);
+      transition: transform 0.1s ease;
+    }
+    .btn:active {
+      transform: scale(0.97);
+    }
+    .card {
+      margin-top: 28px;
+      width: 100%;
+      max-width: 400px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 18px;
+      padding: 22px;
+      text-align: left;
+      backdrop-filter: blur(16px);
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: clamp(0.75rem, 2.5vw, 0.85rem);
+      color: #34d399;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .card-text {
+      font-size: clamp(1.05rem, 3.8vw, 1.25rem);
+      font-weight: 700;
+      line-height: 1.45;
+      color: #f1f5f9;
+      transition: opacity 0.15s ease;
+    }
+    .counter {
+      margin-top: 20px;
+      font-size: clamp(0.8rem, 3vw, 0.95rem);
+      color: #64748b;
+    }
+    .counter span {
+      color: #34d399;
+      font-weight: 800;
+    }
+    footer {
+      width: 100%;
+      text-align: center;
+      font-size: clamp(0.75rem, 2.5vw, 0.85rem);
+      color: #475569;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
   </style>
 </head>
-<body class="text-slate-100 min-h-screen flex flex-col justify-between p-4 sm:p-6 antialiased">
+<body>
 
-  <!-- Header -->
-  <header class="w-full flex justify-between items-center py-2 px-1">
-    <div class="flex items-center gap-2">
-      <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-      <span class="font-extrabold text-lg tracking-wider text-emerald-300">NEXUS://CORE</span>
+  <!-- Navigation Bar with Home & More -->
+  <header>
+    <div class="nav-left">
+      <a href="#" class="logo">NEXUS</a>
+      <a href="#" class="nav-link active">Home</a>
     </div>
-    <span class="text-xs font-mono bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 px-3 py-1 rounded-full font-semibold">
-      ONLINE
-    </span>
+
+    <div class="nav-right">
+      <div class="badge">● LIVE</div>
+      <button class="more-btn" onclick="toggleMenu()">
+        More ▾
+      </button>
+
+      <!-- Dropdown Content -->
+      <div id="dropdownMenu" class="dropdown-menu">
+        <a href="#about" class="dropdown-item" onclick="alert('प्रोजेक्ट: रिपॉजिटरी से चलने वाला इंटरैक्टिव वेब स्पेस')">ℹ️ About</a>
+        <a href="#features" class="dropdown-item" onclick="alert('फ़ीचर्स: नो-सर्वर, अल्ट्रा-फास्ट, 100% क्लाउड ड्रिवन')">⚡ Features</a>
+        <a href="https://github.com" target="_blank" class="dropdown-item">🐙 GitHub Repo</a>
+        <a href="#" class="dropdown-item" onclick="location.reload()">🔄 Refresh App</a>
+      </div>
+    </div>
   </header>
 
-  <!-- Main Hero Content -->
-  <main class="w-full flex-1 flex flex-col justify-center items-center text-center my-6">
-    
-    <!-- Badge -->
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-emerald-500/30 text-emerald-400 text-xs font-semibold tracking-wide mb-6 shadow-md">
-      ⚡ NEXT-GEN REPOSITORY SPACE
-    </div>
+  <main>
+    <div class="pill">⚡ NEXT-GEN SPACE</div>
 
-    <!-- Main Big Title -->
-    <h1 class="text-3xl sm:text-5xl font-extrabold leading-tight tracking-tight mb-4 px-2">
-      इंटरनेट पर जो कभी नहीं बना, <br/>
-      <span class="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">
-        वो अनुभव अब यहाँ है।
-      </span>
+    <h1>
+      इंटरनेट पर जो कभी नहीं बना,<br/>
+      <span class="gradient-text">वो अनुभव अब यहाँ है।</span>
     </h1>
 
-    <p class="text-slate-300 text-sm sm:text-base max-w-sm mb-7 leading-relaxed px-2">
-      क्लाउड-फर्स्ट डिजिटल स्पेस। बिना किसी सर्वर या जटिल सेटअप के, सीधे GitHub से लाइव।
+    <p class="desc">
+      क्लाउड-फर्स्ट डिजिटल स्पेस। बिना किसी सर्वर के, सीधे आपकी रिपॉजिटरी से संचालित।
     </p>
 
-    <!-- Big Action Button -->
-    <button onclick="generateVibe()" class="w-full max-w-xs py-4 px-6 rounded-2xl bg-gradient-to-r from-emerald-400 to-teal-500 text-slate-950 font-extrabold text-base shadow-lg shadow-emerald-500/25 active:scale-95 transition-all flex items-center justify-center gap-2">
-      <span>✦</span>
-      <span>नया विजन अनलॉक करें</span>
+    <button class="btn" onclick="generateVibe()">
+      ✦ नया विजन अनलॉक करें
     </button>
 
-    <!-- Interactive Card -->
-    <div class="mt-8 w-full max-w-sm p-6 rounded-2xl bg-slate-900/80 backdrop-blur-md border border-slate-700/60 shadow-2xl text-left relative overflow-hidden">
-      <div class="flex items-center justify-between text-xs text-slate-400 font-mono mb-3">
-        <span id="idea-tag" class="text-emerald-400 font-bold uppercase tracking-wider">CREATIVITY #01</span>
-        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+    <div class="card">
+      <div class="card-top">
+        <span id="idea-tag">CREATIVITY #01</span>
+        <span>●</span>
       </div>
-      
-      <p id="vision-text" class="text-lg text-slate-100 font-bold leading-snug transition-opacity duration-200">
+      <div id="vision-text" class="card-text">
         "भीड़ की तरह केवल स्क्रॉल मत करो, अपना खुद का डिजिटल यूनिवर्स कोड करो।"
-      </p>
+      </div>
     </div>
 
-    <!-- Live Counter -->
-    <div class="mt-5 text-xs text-slate-400 font-medium">
-      अनलॉक किए गए विचार: <span id="click-counter" class="text-emerald-400 font-mono font-bold text-sm ml-1">1</span>
+    <div class="counter">
+      अनलॉक किए गए विचार: <span id="click-counter">1</span>
     </div>
-
   </main>
 
-  <!-- Footer -->
-  <footer class="w-full text-center py-3 border-t border-slate-800/80 text-xs text-slate-500 font-mono">
+  <footer>
     Directly Served via GitHub Pages
   </footer>
 
   <script>
+    // Dropdown toggle function
+    function toggleMenu() {
+      const menu = document.getElementById('dropdownMenu');
+      menu.classList.toggle('show');
+    }
+
+    // Close dropdown on outside click
+    window.onclick = function(event) {
+      if (!event.target.matches('.more-btn')) {
+        const menu = document.getElementById('dropdownMenu');
+        if (menu && menu.classList.contains('show')) {
+          menu.classList.remove('show');
+        }
+      }
+    }
+
     const visions = [
       { tag: "CREATIVITY", text: "भीड़ की तरह केवल स्क्रॉल मत करो, अपना खुद का डिजिटल यूनिवर्स कोड करो।" },
-      { tag: "INNOVATION", text: "सिर्फ विज़ुअल काफी नहीं, ऐसा वेब अनुभव बनाओ जिसे यूज़र महसूस कर सके।" },
+      { tag: "INNOVATION", text: "सिर्फ विज़ुअल काफी नहीं, ऐसा अनुभव बनाओ जिसे यूज़र महसूस कर सके।" },
       { tag: "MINIMALISM", text: "कम टूल्स, ज़ीरो जटिलता और 100% शुद्ध परफॉर्मेंस।" },
       { tag: "NEXT GEN", text: "आने वाला कल एल्गोरिदम का नहीं, अलग नजरिए वाले क्रिएटर्स का है।" },
       { tag: "FUTURE THINK", text: "जो काम आज अजीब लगता है, वही कल का नया ट्रेंड बनता है।" }
@@ -95,12 +318,12 @@
       const textElem = document.getElementById('vision-text');
       const tagElem = document.getElementById('idea-tag');
 
-      textElem.style.opacity = '0';
+      textElem.style.opacity = '0.2';
       setTimeout(() => {
         textElem.innerText = `"${randomVision.text}"`;
         tagElem.innerText = `${randomVision.tag} #${count < 10 ? '0' + count : count}`;
         textElem.style.opacity = '1';
-      }, 150);
+      }, 120);
     }
   </script>
 </body>
