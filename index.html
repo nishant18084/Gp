@@ -6,7 +6,6 @@
   <title>NEXUS - Social Feed</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Multi-view Container Styling */
     .tab-view {
       display: none;
       width: 100%;
@@ -79,7 +78,7 @@
       font-size: 1.5rem;
     }
 
-    /* Profile View */
+    /* Profile View & Edit Button */
     .profile-header {
       padding: 18px 16px;
       display: flex;
@@ -108,9 +107,93 @@
       color: #a1a1aa;
     }
     .profile-bio {
-      padding: 0 16px 14px;
+      padding: 0 16px 12px;
       font-size: 0.88rem;
       line-height: 1.4;
+    }
+    .profile-actions {
+      padding: 0 16px 16px;
+      display: flex;
+      gap: 8px;
+    }
+    .edit-profile-btn {
+      flex: 1;
+      padding: 8px 0;
+      background: #27272a;
+      color: #fff;
+      border: 1px solid #3f3f46;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .edit-profile-btn:active {
+      background: #3f3f46;
+    }
+
+    /* Edit Profile Modal */
+    .edit-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(6px);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-box {
+      width: 100%;
+      max-width: 380px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .modal-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #34d399;
+      display: flex;
+      justify-content: space-between;
+    }
+    .modal-input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #3f3f46;
+      background: #09090b;
+      color: #fff;
+      font-size: 0.85rem;
+      outline: none;
+    }
+    .modal-btn-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .modal-save-btn {
+      flex: 1;
+      padding: 10px;
+      background: #10b981;
+      color: #022c22;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .modal-cancel-btn {
+      padding: 10px 16px;
+      background: #27272a;
+      color: #e4e4e7;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -158,7 +241,7 @@
   <!-- 4. PROFILE TAB -->
   <section id="tab-profile" class="tab-view">
     <div class="profile-header">
-      <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop" class="profile-pic" alt="You" />
+      <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop" class="profile-pic" id="profile-img" alt="You" />
       <div class="profile-stats">
         <div><div class="stat-num" id="profile-post-count">2</div><div class="stat-label">Posts</div></div>
         <div><div class="stat-num">1.4K</div><div class="stat-label">Followers</div></div>
@@ -166,12 +249,45 @@
       </div>
     </div>
     <div class="profile-bio">
-      <b>Creator Space</b><br />
-      डिजिटल विज़नरी • 100% रिपॉजिटरी से पावर्ड<br />
-      <span style="color:#38bdf8;">github.com/nt18084</span>
+      <b id="profile-name">Creator Space</b><br />
+      <span id="profile-bio-text">डिजिटल विज़नरी • 100% रिपॉजिटरी से पावर्ड</span><br />
+      <span style="color:#38bdf8;" id="profile-link">github.com/nt18084</span>
     </div>
+
+    <!-- Edit Profile Action -->
+    <div class="profile-actions">
+      <button class="edit-profile-btn" onclick="openEditModal()">Edit Profile</button>
+      <button class="edit-profile-btn" onclick="triggerUpload()">Share Post</button>
+    </div>
+
     <div class="explore-grid" id="profile-grid"></div>
   </section>
+
+  <!-- Edit Profile Modal -->
+  <div id="editModal" class="edit-modal">
+    <div class="modal-box">
+      <div class="modal-title">
+        <span>Edit Profile</span>
+        <span style="cursor:pointer;" onclick="closeEditModal()">✕</span>
+      </div>
+      <label style="font-size:0.75rem; color:#a1a1aa;">Display Name</label>
+      <input type="text" id="edit-name-input" class="modal-input" placeholder="Your Name" />
+      
+      <label style="font-size:0.75rem; color:#a1a1aa;">Bio</label>
+      <textarea id="edit-bio-input" class="modal-input" rows="2" placeholder="Tell about yourself"></textarea>
+      
+      <label style="font-size:0.75rem; color:#a1a1aa;">Website Link</label>
+      <input type="text" id="edit-link-input" class="modal-input" placeholder="Link (github/website)" />
+
+      <label style="font-size:0.75rem; color:#a1a1aa;">Profile Image URL</label>
+      <input type="text" id="edit-img-input" class="modal-input" placeholder="Paste Image URL" />
+
+      <div class="modal-btn-row">
+        <button class="modal-save-btn" onclick="saveProfileChanges()">Save</button>
+        <button class="modal-cancel-btn" onclick="closeEditModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Bottom Navigation Bar -->
   <nav class="bottom-nav">
