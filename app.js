@@ -1,3 +1,11 @@
+// User Profile Data
+let userProfile = {
+  name: "Creator Space",
+  bio: "डिजिटल विज़नरी • 100% रिपॉजिटरी से पावर्ड",
+  link: "github.com/nt18084",
+  img: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop"
+};
+
 // Stories Data
 const stories = [
   { name: "Your story", img: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=120&auto=format&fit=crop" },
@@ -33,7 +41,7 @@ const posts = [
   }
 ];
 
-// Explore/Search Grid Images
+// Explore Images
 const exploreImages = [
   "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&auto=format&fit=crop",
@@ -43,7 +51,7 @@ const exploreImages = [
   "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&auto=format&fit=crop"
 ];
 
-// Switch Tabs (Home, Search, Reels, Profile)
+// Switch Tabs
 function switchTab(tabName) {
   document.querySelectorAll('.tab-view').forEach(view => view.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
@@ -55,13 +63,54 @@ function switchTab(tabName) {
   if (targetView) targetView.classList.add('active');
   if (targetBtn) targetBtn.classList.add('active');
 
-  // Change Header Title dynamically
   if (tabName === 'home') title.innerText = 'NEXUSGRAM';
   else if (tabName === 'search') title.innerText = 'EXPLORE';
   else if (tabName === 'reels') title.innerText = 'REELS';
   else if (tabName === 'profile') title.innerText = 'PROFILE';
 
   window.scrollTo(0, 0);
+}
+
+// Edit Profile Modal Handling
+function openEditModal() {
+  document.getElementById('edit-name-input').value = userProfile.name;
+  document.getElementById('edit-bio-input').value = userProfile.bio;
+  document.getElementById('edit-link-input').value = userProfile.link;
+  document.getElementById('edit-img-input').value = userProfile.img;
+  document.getElementById('editModal').style.display = 'flex';
+}
+
+function closeEditModal() {
+  document.getElementById('editModal').style.display = 'none';
+}
+
+function saveProfileChanges() {
+  const name = document.getElementById('edit-name-input').value.trim();
+  const bio = document.getElementById('edit-bio-input').value.trim();
+  const link = document.getElementById('edit-link-input').value.trim();
+  const img = document.getElementById('edit-img-input').value.trim();
+
+  if (name) userProfile.name = name;
+  if (bio) userProfile.bio = bio;
+  if (link) userProfile.link = link;
+  if (img) userProfile.img = img;
+
+  renderProfile();
+  closeEditModal();
+}
+
+// Render Profile
+function renderProfile() {
+  document.getElementById('profile-name').innerText = userProfile.name;
+  document.getElementById('profile-bio-text').innerText = userProfile.bio;
+  document.getElementById('profile-link').innerText = userProfile.link;
+  document.getElementById('profile-img').src = userProfile.img;
+  document.getElementById('profile-post-count').innerText = posts.length;
+
+  const profileGrid = document.getElementById('profile-grid');
+  profileGrid.innerHTML = posts.map(p => `
+    <img src="${p.postImg}" class="explore-img" alt="Post thumbnail" />
+  `).join('');
 }
 
 // Render Stories
@@ -77,7 +126,6 @@ function renderStories() {
   `).join('');
 }
 
-// Story Viewer
 function openStory(index) {
   const story = stories[index];
   document.getElementById("storyModalName").innerText = story.name;
@@ -138,11 +186,9 @@ function renderFeed() {
     </article>
   `).join('');
 
-  // Update profile post grid and counter
   renderProfile();
 }
 
-// Render Search & Profile Grids
 function renderSearchGrid() {
   const grid = document.getElementById('explore-grid');
   grid.innerHTML = exploreImages.map(img => `
@@ -150,15 +196,6 @@ function renderSearchGrid() {
   `).join('');
 }
 
-function renderProfile() {
-  document.getElementById('profile-post-count').innerText = posts.length;
-  const profileGrid = document.getElementById('profile-grid');
-  profileGrid.innerHTML = posts.map(p => `
-    <img src="${p.postImg}" class="explore-img" alt="Post thumbnail" />
-  `).join('');
-}
-
-// Like Actions
 function handleLike(id) {
   const post = posts.find(p => p.id === id);
   post.liked = !post.liked;
@@ -181,7 +218,6 @@ function handleDoubleTap(id) {
   if (!post.liked) handleLike(id);
 }
 
-// Comments
 function addComment(id) {
   const input = document.getElementById(`input-${id}`);
   const text = input.value.trim();
@@ -195,7 +231,6 @@ function addComment(id) {
   input.value = "";
 }
 
-// Upload Trigger (➕)
 function triggerUpload() {
   document.getElementById('imageInput').click();
 }
@@ -209,9 +244,9 @@ function handleNewImage(event) {
     const userCaption = prompt("फोटो का कैप्शन लिखें:") || "Just posted! ✨";
     const newPost = {
       id: Date.now(),
-      username: "you",
+      username: userProfile.name.toLowerCase().replace(/\s+/g, '_'),
       location: "India",
-      avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&auto=format&fit=crop",
+      avatar: userProfile.img,
       postImg: e.target.result,
       likes: 0,
       liked: false,
@@ -221,14 +256,14 @@ function handleNewImage(event) {
 
     posts.unshift(newPost);
     renderFeed();
-    switchTab('home'); // Go to feed to see upload
+    switchTab('home');
   };
   reader.readAsDataURL(file);
 }
 
-// Init
 document.addEventListener("DOMContentLoaded", () => {
   renderStories();
   renderFeed();
   renderSearchGrid();
+  renderProfile();
 });
