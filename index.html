@@ -27,10 +27,30 @@
   <nav class="bottom-nav">
     <div class="nav-item active" onclick="switchNav(this)">🏠</div>
     <div class="nav-item" onclick="switchNav(this)">🔍</div>
-    <div class="nav-item" onclick="switchNav(this)">➕</div>
+    <div class="nav-item" onclick="triggerUpload()">➕</div>
     <div class="nav-item" onclick="switchNav(this)">🎬</div>
     <div class="nav-item" onclick="switchNav(this)">👤</div>
   </nav>
+
+  <!-- Hidden File Input for New Post -->
+  <input type="file" id="imageInput" accept="image/*" style="display: none;" onchange="handleNewImage(event)" />
+
+  <!-- Fullscreen Story Modal -->
+  <div id="storyModal" style="display:none; position:fixed; inset:0; background:#000; z-index:100; flex-direction:column; justify-content:space-between; padding:20px 16px;">
+    <div style="display:flex; gap:4px; width:100%;">
+      <div style="height:3px; background:#fff; flex:1; border-radius:2px;"></div>
+    </div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <img id="storyModalAvatar" src="" style="width:36px; height:36px; border-radius:50%; object-fit:cover;" />
+        <span id="storyModalName" style="font-weight:700; font-size:0.9rem;"></span>
+      </div>
+      <button onclick="closeStory()" style="background:none; border:none; color:#fff; font-size:1.5rem; cursor:pointer;">✕</button>
+    </div>
+    <div style="flex:1; display:flex; align-items:center; justify-content:center; margin:20px 0;">
+      <img id="storyModalImg" src="" style="max-width:100%; max-height:80vh; border-radius:12px; object-fit:contain;" />
+    </div>
+  </div>
 
   <!-- Load JavaScript -->
   <script src="app.js"></script>
