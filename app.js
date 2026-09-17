@@ -7,7 +7,7 @@ const stories = [
   { name: "cyber_space", img: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=120&auto=format&fit=crop" }
 ];
 
-// Posts Feed Data
+// Feed Posts Data
 const posts = [
   {
     id: 1,
@@ -33,7 +33,38 @@ const posts = [
   }
 ];
 
-// Render Stories (Clickable to open Fullscreen)
+// Explore/Search Grid Images
+const exploreImages = [
+  "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&auto=format&fit=crop"
+];
+
+// Switch Tabs (Home, Search, Reels, Profile)
+function switchTab(tabName) {
+  document.querySelectorAll('.tab-view').forEach(view => view.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+
+  const targetView = document.getElementById(`tab-${tabName}`);
+  const targetBtn = document.getElementById(`btn-${tabName}`);
+  const title = document.getElementById('page-title');
+
+  if (targetView) targetView.classList.add('active');
+  if (targetBtn) targetBtn.classList.add('active');
+
+  // Change Header Title dynamically
+  if (tabName === 'home') title.innerText = 'NEXUSGRAM';
+  else if (tabName === 'search') title.innerText = 'EXPLORE';
+  else if (tabName === 'reels') title.innerText = 'REELS';
+  else if (tabName === 'profile') title.innerText = 'PROFILE';
+
+  window.scrollTo(0, 0);
+}
+
+// Render Stories
 function renderStories() {
   const container = document.getElementById("stories-list");
   container.innerHTML = stories.map((s, idx) => `
@@ -46,7 +77,7 @@ function renderStories() {
   `).join('');
 }
 
-// Story Viewer Controls
+// Story Viewer
 function openStory(index) {
   const story = stories[index];
   document.getElementById("storyModalName").innerText = story.name;
@@ -106,6 +137,25 @@ function renderFeed() {
       </div>
     </article>
   `).join('');
+
+  // Update profile post grid and counter
+  renderProfile();
+}
+
+// Render Search & Profile Grids
+function renderSearchGrid() {
+  const grid = document.getElementById('explore-grid');
+  grid.innerHTML = exploreImages.map(img => `
+    <img src="${img}" class="explore-img" alt="Explore Item" />
+  `).join('');
+}
+
+function renderProfile() {
+  document.getElementById('profile-post-count').innerText = posts.length;
+  const profileGrid = document.getElementById('profile-grid');
+  profileGrid.innerHTML = posts.map(p => `
+    <img src="${p.postImg}" class="explore-img" alt="Post thumbnail" />
+  `).join('');
 }
 
 // Like Actions
@@ -128,9 +178,7 @@ function handleDoubleTap(id) {
   setTimeout(() => heart.classList.remove('active'), 600);
 
   const post = posts.find(p => p.id === id);
-  if (!post.liked) {
-    handleLike(id);
-  }
+  if (!post.liked) handleLike(id);
 }
 
 // Comments
@@ -147,7 +195,7 @@ function addComment(id) {
   input.value = "";
 }
 
-// Upload New Post via Gallery (➕ Button)
+// Upload Trigger (➕)
 function triggerUpload() {
   document.getElementById('imageInput').click();
 }
@@ -158,7 +206,7 @@ function handleNewImage(event) {
 
   const reader = new FileReader();
   reader.onload = function(e) {
-    const userCaption = prompt("फोटो का कैप्शन दर्ज करें:") || "New upload! ✨";
+    const userCaption = prompt("फोटो का कैप्शन लिखें:") || "Just posted! ✨";
     const newPost = {
       id: Date.now(),
       username: "you",
@@ -173,18 +221,14 @@ function handleNewImage(event) {
 
     posts.unshift(newPost);
     renderFeed();
+    switchTab('home'); // Go to feed to see upload
   };
   reader.readAsDataURL(file);
 }
 
-// Bottom Bar Active Switch
-function switchNav(element) {
-  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-  element.classList.add('active');
-}
-
-// Page Load
+// Init
 document.addEventListener("DOMContentLoaded", () => {
   renderStories();
   renderFeed();
+  renderSearchGrid();
 });
