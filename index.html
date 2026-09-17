@@ -1,253 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login & Sign Up</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    }
-
-    body {
-      background-color: #f7a261;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
-
-    .login-card {
-      background: #ffffff;
-      width: 100%;
-      max-width: 360px;
-      border-radius: 28px;
-      padding: 36px 24px 28px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .avatar-box {
-      width: 85px;
-      height: 85px;
-      background-color: #fcebd9;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 42px;
-      margin-bottom: 16px;
-      user-select: none;
-      transition: all 0.2s ease;
-    }
-
-    h2 {
-      color: #1e3a4c;
-      font-size: 1.45rem;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .subtitle {
-      color: #7b8b95;
-      font-size: 0.85rem;
-      margin-bottom: 22px;
-    }
-
-    .form-group {
-      width: 100%;
-      position: relative;
-      margin-bottom: 14px;
-    }
-
-    .input-field {
-      width: 100%;
-      padding: 13px 16px;
-      border-radius: 12px;
-      border: 1.5px solid #d9e2ec;
-      outline: none;
-      font-size: 0.95rem;
-      color: #334e68;
-      background: #ffffff;
-      transition: border-color 0.2s ease;
-    }
-
-    .input-field:focus {
-      border-color: #f07f5e;
-    }
-
-    .toggle-password {
-      position: absolute;
-      right: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      font-size: 1.1rem;
-      opacity: 0.5;
-      user-select: none;
-    }
-
-    .btn-submit {
-      width: 100%;
-      padding: 13px;
-      background-color: #2a9d8f;
-      color: #ffffff;
-      border: none;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 6px;
-      transition: background-color 0.2s ease;
-    }
-
-    .btn-submit:active {
-      background-color: #21867a;
-    }
-
-    /* New User Footer Link */
-    .switch-mode {
-      margin-top: 18px;
-      font-size: 0.85rem;
-      color: #64748b;
-      text-align: center;
-    }
-
-    .switch-mode a {
-      color: #2a9d8f;
-      text-decoration: none;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .switch-mode a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unique Digital Space</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-slate-950 text-slate-100 flex flex-col min-h-screen">
 
-  <div class="login-card">
-    <div class="avatar-box" id="avatar">🐵</div>
-    
-    <h2 id="formTitle">Welcome Back</h2>
-    <p class="subtitle" id="formSubtitle">Please enter your details to sign in</p>
+  <header class="p-6 border-b border-slate-800 flex justify-between items-center max-w-5xl w-full mx-auto">
+    <h1 class="text-xl font-bold tracking-wider text-teal-400">PROJECT://ZERO</h1>
+    <span class="text-xs bg-slate-800 border border-slate-700 px-3 py-1 rounded-full text-slate-400">Live on GitHub</span>
+  </header>
 
-    <!-- Form -->
-    <form id="authForm" style="width: 100%;">
-      <div class="form-group">
-        <input type="text" id="username" class="input-field" placeholder="Username or Email" required autocomplete="off">
-      </div>
-
-      <div class="form-group">
-        <input type="password" id="password" class="input-field" placeholder="Password" required>
-        <span class="toggle-password" id="togglePass">👁️</span>
-      </div>
-
-      <button type="submit" class="btn-submit" id="submitBtn">Sign In</button>
-    </form>
-
-    <!-- Red Circle Area (Bottom Switch) -->
-    <div class="switch-mode">
-      <span id="switchText">Don't have an account?</span>
-      <a id="switchBtn" onclick="toggleAuthMode()">Sign Up</a>
+  <main class="flex-1 flex flex-col items-center justify-center p-6 text-center max-w-3xl mx-auto">
+    <div class="inline-block mb-4 p-2 px-4 rounded-full bg-teal-950/50 border border-teal-500/30 text-teal-300 text-sm">
+      ✨ 100% Repository-Driven Project
     </div>
-  </div>
+    <h2 class="text-4xl sm:text-5xl font-extrabold mb-6 leading-tight">
+      इंटरनेट पर आज तक जो नहीं बना, <br/><span class="text-teal-400">यहाँ से शुरू होगा।</span>
+    </h2>
+    <p class="text-slate-400 text-base sm:text-lg mb-8 max-w-xl">
+      यह प्रोजेक्ट बिना किसी भारी सर्वर सेटअप के पूरी तरह GitHub पर चलता और मैनेज होता है।
+    </p>
+
+    <div class="flex gap-4">
+      <button onclick="changeQuote()" class="bg-teal-500 hover:bg-teal-400 text-slate-950 font-semibold px-6 py-3 rounded-lg transition-all">
+        नया विचार लोड करें
+      </button>
+    </div>
+
+    <div id="display-card" class="mt-8 p-6 bg-slate-900 border border-slate-800 rounded-xl text-slate-300 max-w-md w-full shadow-lg">
+      "कन्वेंशनल आइडियाज की भीड़ में अपनी अलग जगह बनाओ।"
+    </div>
+  </main>
+
+  <footer class="p-6 border-t border-slate-900 text-center text-xs text-slate-600">
+    Built & Maintained Directly inside GitHub
+  </footer>
 
   <script>
-    const avatar = document.getElementById('avatar');
-    const passwordInput = document.getElementById('password');
-    const togglePass = document.getElementById('togglePass');
-    const authForm = document.getElementById('authForm');
-    const formTitle = document.getElementById('formTitle');
-    const formSubtitle = document.getElementById('formSubtitle');
-    const submitBtn = document.getElementById('submitBtn');
-    const switchText = document.getElementById('switchText');
-    const switchBtn = document.getElementById('switchBtn');
+    const thoughts = [
+      "कन्वेंशनल आइडियाज की भीड़ में अपनी अलग जगह बनाओ।",
+      "सिर्फ कोड मत लिखो, डिजिटल आर्ट बनाओ।",
+      "भविष्य उनका है जो एल्गोरिदम से आगे सोचते हैं।",
+      "कम टूल्स, ज़्यादा क्रिएशन।"
+    ];
 
-    let isSignUpMode = false;
-
-    // Monkey Animation
-    passwordInput.addEventListener('focus', () => {
-      avatar.textContent = '🙈';
-    });
-
-    passwordInput.addEventListener('blur', () => {
-      avatar.textContent = '🐵';
-    });
-
-    // Eye toggle
-    togglePass.addEventListener('click', () => {
-      if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-        avatar.textContent = '🐵';
-      } else {
-        passwordInput.type = 'password';
-        avatar.textContent = '🙈';
-      }
-    });
-
-    // Sign In / Sign Up Switch Mode
-    function toggleAuthMode() {
-      isSignUpMode = !isSignUpMode;
-      authForm.reset();
-
-      if (isSignUpMode) {
-        formTitle.textContent = "Create Account";
-        formSubtitle.textContent = "Register a new user account";
-        submitBtn.textContent = "Register";
-        switchText.textContent = "Already have an account?";
-        switchBtn.textContent = "Sign In";
-        avatar.textContent = "👋";
-      } else {
-        formTitle.textContent = "Welcome Back";
-        formSubtitle.textContent = "Please enter your details to sign in";
-        submitBtn.textContent = "Sign In";
-        switchText.textContent = "Don't have an account?";
-        switchBtn.textContent = "Sign Up";
-        avatar.textContent = "🐵";
-      }
+    function changeQuote() {
+      const card = document.getElementById('display-card');
+      const random = thoughts[Math.floor(Math.random() * thoughts.length)];
+      card.innerText = `"${random}"`;
     }
-
-    // Submit handler
-    authForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const user = document.getElementById('username').value.trim();
-      const pass = passwordInput.value.trim();
-
-      if (isSignUpMode) {
-        // Naya user save ho raha hai
-        let registeredUsers = JSON.parse(localStorage.getItem('users') || '{}');
-        registeredUsers[user] = pass;
-        localStorage.setItem('users', JSON.stringify(registeredUsers));
-
-        avatar.textContent = '🎉';
-        alert("Account successfully created! Ab login karein.");
-        toggleAuthMode();
-      } else {
-        // Login check: Default Admin ya Saved Users
-        let registeredUsers = JSON.parse(localStorage.getItem('users') || '{}');
-
-        const isDefaultAdmin = (user === "Admin" && pass === "1234");
-        const isRegisteredUser = (registeredUsers[user] && registeredUsers[user] === pass);
-
-        if (isDefaultAdmin || isRegisteredUser) {
-          avatar.textContent = '🎉';
-          alert("Welcome! Login successful.");
-          window.location.href = "dashboard.html";
-        } else {
-          alert("Galat Username ya Password!");
-        }
-      }
-    });
   </script>
-
 </body>
 </html>
