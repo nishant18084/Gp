@@ -5,54 +5,203 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>NEXUS - Social Feed</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Multi-view Container Styling */
+    .tab-view {
+      display: none;
+      width: 100%;
+      max-width: 480px;
+    }
+    .tab-view.active {
+      display: block;
+    }
+
+    /* Search View */
+    .search-bar-box {
+      padding: 12px 16px;
+      position: sticky;
+      top: 55px;
+      background: #000;
+      z-index: 40;
+    }
+    .search-input {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid #27272a;
+      background: #18181b;
+      color: #fff;
+      font-size: 0.9rem;
+      outline: none;
+    }
+    .explore-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+      padding: 3px;
+    }
+    .explore-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    /* Reels View */
+    .reel-container {
+      position: relative;
+      width: 100%;
+      height: calc(100vh - 120px);
+      background: #111;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .reel-bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .reel-overlay {
+      position: absolute;
+      bottom: 20px;
+      left: 16px;
+      right: 70px;
+    }
+    .reel-actions {
+      position: absolute;
+      bottom: 24px;
+      right: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      align-items: center;
+      font-size: 1.5rem;
+    }
+
+    /* Profile View */
+    .profile-header {
+      padding: 18px 16px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .profile-pic {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      border: 2px solid #27272a;
+      object-fit: cover;
+    }
+    .profile-stats {
+      flex: 1;
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+    }
+    .stat-num {
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      color: #a1a1aa;
+    }
+    .profile-bio {
+      padding: 0 16px 14px;
+      font-size: 0.88rem;
+      line-height: 1.4;
+    }
+  </style>
 </head>
 <body>
 
   <!-- Top App Bar -->
   <header class="top-bar">
-    <div class="app-title">NEXUSGRAM</div>
+    <div class="app-title" id="page-title">NEXUSGRAM</div>
     <div class="top-icons">
-      <span class="icon-btn">♡</span>
-      <span class="icon-btn">⚡</span>
+      <span class="icon-btn" onclick="alert('No new notifications')">♡</span>
+      <span class="icon-btn" onclick="switchTab('reels')">⚡</span>
     </div>
   </header>
 
-  <!-- Stories Section -->
-  <section class="stories-container" id="stories-list"></section>
+  <!-- 1. HOME TAB -->
+  <section id="tab-home" class="tab-view active">
+    <div class="stories-container" id="stories-list"></div>
+    <main class="feed-container" id="posts-container"></main>
+  </section>
 
-  <!-- Main Feed -->
-  <main class="feed-container" id="posts-container"></main>
+  <!-- 2. SEARCH TAB -->
+  <section id="tab-search" class="tab-view">
+    <div class="search-bar-box">
+      <input type="text" class="search-input" placeholder="खोजें (Explore, Users, Tags)..." />
+    </div>
+    <div class="explore-grid" id="explore-grid"></div>
+  </section>
+
+  <!-- 3. REELS TAB -->
+  <section id="tab-reels" class="tab-view">
+    <div class="reel-container">
+      <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop" class="reel-bg" alt="Reel visual" />
+      <div class="reel-overlay">
+        <div style="font-weight:700; margin-bottom: 6px;">@alex_creator 🎵 Original Audio</div>
+        <p style="font-size: 0.85rem; color: #e4e4e7;">क्लाउड रील इंजन टेस्टिंग 🚀 #NexusReels #Innovation</p>
+      </div>
+      <div class="reel-actions">
+        <span onclick="this.innerText = this.innerText === '❤️' ? '🤍' : '❤️'">❤️</span>
+        <span>💬</span>
+        <span>↗</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. PROFILE TAB -->
+  <section id="tab-profile" class="tab-view">
+    <div class="profile-header">
+      <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop" class="profile-pic" alt="You" />
+      <div class="profile-stats">
+        <div><div class="stat-num" id="profile-post-count">2</div><div class="stat-label">Posts</div></div>
+        <div><div class="stat-num">1.4K</div><div class="stat-label">Followers</div></div>
+        <div><div class="stat-num">340</div><div class="stat-label">Following</div></div>
+      </div>
+    </div>
+    <div class="profile-bio">
+      <b>Creator Space</b><br />
+      डिजिटल विज़नरी • 100% रिपॉजिटरी से पावर्ड<br />
+      <span style="color:#38bdf8;">github.com/nt18084</span>
+    </div>
+    <div class="explore-grid" id="profile-grid"></div>
+  </section>
 
   <!-- Bottom Navigation Bar -->
   <nav class="bottom-nav">
-    <div class="nav-item active" onclick="switchNav(this)">🏠</div>
-    <div class="nav-item" onclick="switchNav(this)">🔍</div>
+    <div class="nav-item active" id="btn-home" onclick="switchTab('home')">🏠</div>
+    <div class="nav-item" id="btn-search" onclick="switchTab('search')">🔍</div>
     <div class="nav-item" onclick="triggerUpload()">➕</div>
-    <div class="nav-item" onclick="switchNav(this)">🎬</div>
-    <div class="nav-item" onclick="switchNav(this)">👤</div>
+    <div class="nav-item" id="btn-reels" onclick="switchTab('reels')">🎬</div>
+    <div class="nav-item" id="btn-profile" onclick="switchTab('profile')">👤</div>
   </nav>
 
-  <!-- Hidden File Input for New Post -->
+  <!-- Hidden File Input for Image Upload -->
   <input type="file" id="imageInput" accept="image/*" style="display: none;" onchange="handleNewImage(event)" />
 
   <!-- Fullscreen Story Modal -->
-  <div id="storyModal" style="display:none; position:fixed; inset:0; background:#000; z-index:100; flex-direction:column; justify-content:space-between; padding:20px 16px;">
-    <div style="display:flex; gap:4px; width:100%;">
-      <div style="height:3px; background:#fff; flex:1; border-radius:2px;"></div>
-    </div>
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
-      <div style="display:flex; align-items:center; gap:10px;">
-        <img id="storyModalAvatar" src="" style="width:36px; height:36px; border-radius:50%; object-fit:cover;" />
-        <span id="storyModalName" style="font-weight:700; font-size:0.9rem;"></span>
+  <div id="storyModal" class="story-modal">
+    <div>
+      <div class="story-progress"></div>
+      <div class="story-header">
+        <div class="story-user-meta">
+          <img id="storyModalAvatar" src="" style="width:36px; height:36px; border-radius:50%; object-fit:cover;" />
+          <span id="storyModalName" style="font-weight:700; font-size:0.9rem;"></span>
+        </div>
+        <button class="story-close" onclick="closeStory()">✕</button>
       </div>
-      <button onclick="closeStory()" style="background:none; border:none; color:#fff; font-size:1.5rem; cursor:pointer;">✕</button>
     </div>
-    <div style="flex:1; display:flex; align-items:center; justify-content:center; margin:20px 0;">
-      <img id="storyModalImg" src="" style="max-width:100%; max-height:80vh; border-radius:12px; object-fit:contain;" />
+    <div style="flex:1; display:flex; align-items:center; justify-content:center; margin:15px 0;">
+      <img id="storyModalImg" src="" style="max-width:100%; max-height:75vh; border-radius:12px; object-fit:contain;" />
     </div>
   </div>
 
-  <!-- Load JavaScript -->
   <script src="app.js"></script>
 </body>
 </html>
