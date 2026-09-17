@@ -33,17 +33,30 @@ const posts = [
   }
 ];
 
-// Render Stories
+// Render Stories (Clickable to open Fullscreen)
 function renderStories() {
   const container = document.getElementById("stories-list");
-  container.innerHTML = stories.map(s => `
-    <div class="story-item">
+  container.innerHTML = stories.map((s, idx) => `
+    <div class="story-item" onclick="openStory(${idx})">
       <div class="story-ring">
         <img src="${s.img}" class="story-avatar" alt="${s.name}">
       </div>
       <span class="story-username">${s.name}</span>
     </div>
   `).join('');
+}
+
+// Story Viewer Controls
+function openStory(index) {
+  const story = stories[index];
+  document.getElementById("storyModalName").innerText = story.name;
+  document.getElementById("storyModalAvatar").src = story.img;
+  document.getElementById("storyModalImg").src = story.img;
+  document.getElementById("storyModal").style.display = "flex";
+}
+
+function closeStory() {
+  document.getElementById("storyModal").style.display = "none";
 }
 
 // Render Feed
@@ -80,7 +93,7 @@ function renderFeed() {
 
       <div class="post-details">
         <div class="likes-count"><span id="like-count-${post.id}">${post.likes.toLocaleString()}</span> likes</div>
-        <div class="caption"><b>${post.username}</b>${post.caption}</div>
+        <div class="caption"><b>${post.username}</b> ${post.caption}</div>
 
         <div class="comment-list" id="comments-${post.id}">
           ${post.comments.map(c => `<div><b>user</b> ${c}</div>`).join('')}
@@ -134,15 +147,44 @@ function addComment(id) {
   input.value = "";
 }
 
+// Upload New Post via Gallery (➕ Button)
+function triggerUpload() {
+  document.getElementById('imageInput').click();
+}
+
+function handleNewImage(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const userCaption = prompt("फोटो का कैप्शन दर्ज करें:") || "New upload! ✨";
+    const newPost = {
+      id: Date.now(),
+      username: "you",
+      location: "India",
+      avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&auto=format&fit=crop",
+      postImg: e.target.result,
+      likes: 0,
+      liked: false,
+      caption: userCaption,
+      comments: []
+    };
+
+    posts.unshift(newPost);
+    renderFeed();
+  };
+  reader.readAsDataURL(file);
+}
+
 // Bottom Bar Active Switch
 function switchNav(element) {
   document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
   element.classList.add('active');
 }
 
-// Initialize on page load
+// Page Load
 document.addEventListener("DOMContentLoaded", () => {
   renderStories();
   renderFeed();
 });
-
