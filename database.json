@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Wikipedia - Artificial Intelligence",
+    "url": "https://en.wikipedia.org/wiki/Artificial_intelligence",
+    "body": "Artificial intelligence is intelligence demonstrated by machines, synthesizing human intellect to perceive, synthesize, and infer information."
+  },
+  {
+    "title": "Python Official Documentation",
+    "url": "https://www.python.org",
+    "body": "Python is an easy to learn, powerful programming language with efficient high-level data structures and simple object-oriented approach."
+  },
+  {
+    "title": "Android Developer Guides",
+    "url": "https://developer.android.com",
+    "body": "Build apps for Android devices including smartphones, tablets, TVs, and wear os with official tools and modern libraries."
+  },
+  {
+    "title": "Nishant Personal Projects",
+    "url": "https://nishant18084.github.io/upgraded-parakeet/",
+    "body": "Jarvis voice assistant and independent search engine hosted directly on GitHub Pages without external servers."
+  }
+]
