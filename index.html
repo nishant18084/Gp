@@ -1,323 +1,65 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>NEXUS - Social Feed</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Search Engine</title>
   <style>
-    .tab-view {
-      display: none;
-      width: 100%;
-      max-width: 480px;
-    }
-    .tab-view.active {
-      display: block;
-    }
-
-    /* Search View */
-    .search-bar-box {
-      padding: 12px 16px;
-      position: sticky;
-      top: 55px;
-      background: #000;
-      z-index: 40;
-    }
-    .search-input {
-      width: 100%;
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid #27272a;
-      background: #18181b;
-      color: #fff;
-      font-size: 0.9rem;
-      outline: none;
-    }
-    .explore-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 3px;
-      padding: 3px;
-    }
-    .explore-img {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-    }
-
-    /* Reels View */
-    .reel-container {
-      position: relative;
-      width: 100%;
-      height: calc(100vh - 120px);
-      background: #111;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .reel-bg {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .reel-overlay {
-      position: absolute;
-      bottom: 20px;
-      left: 16px;
-      right: 70px;
-    }
-    .reel-actions {
-      position: absolute;
-      bottom: 24px;
-      right: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      align-items: center;
-      font-size: 1.5rem;
-    }
-
-    /* Profile View & Edit Button */
-    .profile-header {
-      padding: 18px 16px;
-      display: flex;
-      gap: 20px;
-      align-items: center;
-    }
-    .profile-pic {
-      width: 78px;
-      height: 78px;
-      border-radius: 50%;
-      border: 2px solid #27272a;
-      object-fit: cover;
-    }
-    .profile-stats {
-      flex: 1;
-      display: flex;
-      justify-content: space-around;
-      text-align: center;
-    }
-    .stat-num {
-      font-weight: 800;
-      font-size: 1.1rem;
-    }
-    .stat-label {
-      font-size: 0.75rem;
-      color: #a1a1aa;
-    }
-    .profile-bio {
-      padding: 0 16px 12px;
-      font-size: 0.88rem;
-      line-height: 1.4;
-    }
-    .profile-actions {
-      padding: 0 16px 16px;
-      display: flex;
-      gap: 8px;
-    }
-    .edit-profile-btn {
-      flex: 1;
-      padding: 8px 0;
-      background: #27272a;
-      color: #fff;
-      border: 1px solid #3f3f46;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.85rem;
-      cursor: pointer;
-    }
-    .edit-profile-btn:active {
-      background: #3f3f46;
-    }
-
-    /* Edit Profile Modal */
-    .edit-modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(6px);
-      z-index: 200;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-    }
-    .modal-box {
-      width: 100%;
-      max-width: 380px;
-      background: #18181b;
-      border: 1px solid #27272a;
-      border-radius: 16px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .modal-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #34d399;
-      display: flex;
-      justify-content: space-between;
-    }
-    .modal-input {
-      width: 100%;
-      padding: 10px 12px;
-      border-radius: 8px;
-      border: 1px solid #3f3f46;
-      background: #09090b;
-      color: #fff;
-      font-size: 0.85rem;
-      outline: none;
-    }
-    .modal-btn-row {
-      display: flex;
-      gap: 10px;
-      margin-top: 6px;
-    }
-    .modal-save-btn {
-      flex: 1;
-      padding: 10px;
-      background: #10b981;
-      color: #022c22;
-      border: none;
-      border-radius: 8px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-    .modal-cancel-btn {
-      padding: 10px 16px;
-      background: #27272a;
-      color: #e4e4e7;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+    body { background: #0f172a; color: #f8fafc; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 50px 20px; }
+    h1 { font-size: 2.2rem; color: #38bdf8; margin-bottom: 25px; letter-spacing: -0.5px; }
+    .search-box { width: 100%; max-width: 600px; display: flex; gap: 10px; margin-bottom: 30px; }
+    input { width: 100%; padding: 14px 20px; font-size: 16px; border-radius: 30px; border: 1px solid #334155; background: #1e293b; color: #fff; outline: none; transition: 0.2s; }
+    input:focus { border-color: #38bdf8; box-shadow: 0 0 10px rgba(56, 189, 248, 0.2); }
+    #results { width: 100%; max-width: 600px; display: flex; flex-direction: column; gap: 16px; }
+    .card { background: #1e293b; padding: 18px; border-radius: 12px; border: 1px solid #334155; text-align: left; }
+    .card a { color: #38bdf8; font-size: 1.15rem; text-decoration: none; font-weight: 600; }
+    .card a:hover { text-decoration: underline; }
+    .card p { color: #94a3b8; font-size: 0.95rem; margin-top: 6px; line-height: 1.4; }
   </style>
 </head>
 <body>
 
-  <!-- Top App Bar -->
-  <header class="top-bar">
-    <div class="app-title" id="page-title">NEXUSGRAM</div>
-    <div class="top-icons">
-      <span class="icon-btn" onclick="alert('No new notifications')">♡</span>
-      <span class="icon-btn" onclick="switchTab('reels')">⚡</span>
-    </div>
-  </header>
-
-  <!-- 1. HOME TAB -->
-  <section id="tab-home" class="tab-view active">
-    <div class="stories-container" id="stories-list"></div>
-    <main class="feed-container" id="posts-container"></main>
-  </section>
-
-  <!-- 2. SEARCH TAB -->
-  <section id="tab-search" class="tab-view">
-    <div class="search-bar-box">
-      <input type="text" class="search-input" placeholder="खोजें (Explore, Users, Tags)..." />
-    </div>
-    <div class="explore-grid" id="explore-grid"></div>
-  </section>
-
-  <!-- 3. REELS TAB -->
-  <section id="tab-reels" class="tab-view">
-    <div class="reel-container">
-      <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop" class="reel-bg" alt="Reel visual" />
-      <div class="reel-overlay">
-        <div style="font-weight:700; margin-bottom: 6px;">@alex_creator 🎵 Original Audio</div>
-        <p style="font-size: 0.85rem; color: #e4e4e7;">क्लाउड रील इंजन टेस्टिंग 🚀 #NexusReels #Innovation</p>
-      </div>
-      <div class="reel-actions">
-        <span onclick="this.innerText = this.innerText === '❤️' ? '🤍' : '❤️'">❤️</span>
-        <span>💬</span>
-        <span>↗</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. PROFILE TAB -->
-  <section id="tab-profile" class="tab-view">
-    <div class="profile-header">
-      <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop" class="profile-pic" id="profile-img" alt="You" />
-      <div class="profile-stats">
-        <div><div class="stat-num" id="profile-post-count">2</div><div class="stat-label">Posts</div></div>
-        <div><div class="stat-num">1.4K</div><div class="stat-label">Followers</div></div>
-        <div><div class="stat-num">340</div><div class="stat-label">Following</div></div>
-      </div>
-    </div>
-    <div class="profile-bio">
-      <b id="profile-name">Creator Space</b><br />
-      <span id="profile-bio-text">डिजिटल विज़नरी • 100% रिपॉजिटरी से पावर्ड</span><br />
-      <span style="color:#38bdf8;" id="profile-link">github.com/nt18084</span>
-    </div>
-
-    <!-- Edit Profile Action -->
-    <div class="profile-actions">
-      <button class="edit-profile-btn" onclick="openEditModal()">Edit Profile</button>
-      <button class="edit-profile-btn" onclick="triggerUpload()">Share Post</button>
-    </div>
-
-    <div class="explore-grid" id="profile-grid"></div>
-  </section>
-
-  <!-- Edit Profile Modal -->
-  <div id="editModal" class="edit-modal">
-    <div class="modal-box">
-      <div class="modal-title">
-        <span>Edit Profile</span>
-        <span style="cursor:pointer;" onclick="closeEditModal()">✕</span>
-      </div>
-      <label style="font-size:0.75rem; color:#a1a1aa;">Display Name</label>
-      <input type="text" id="edit-name-input" class="modal-input" placeholder="Your Name" />
-      
-      <label style="font-size:0.75rem; color:#a1a1aa;">Bio</label>
-      <textarea id="edit-bio-input" class="modal-input" rows="2" placeholder="Tell about yourself"></textarea>
-      
-      <label style="font-size:0.75rem; color:#a1a1aa;">Website Link</label>
-      <input type="text" id="edit-link-input" class="modal-input" placeholder="Link (github/website)" />
-
-      <label style="font-size:0.75rem; color:#a1a1aa;">Profile Image URL</label>
-      <input type="text" id="edit-img-input" class="modal-input" placeholder="Paste Image URL" />
-
-      <div class="modal-btn-row">
-        <button class="modal-save-btn" onclick="saveProfileChanges()">Save</button>
-        <button class="modal-cancel-btn" onclick="closeEditModal()">Cancel</button>
-      </div>
-    </div>
+  <h1>Nishant Search</h1>
+  <div class="search-box">
+    <input type="text" id="query" placeholder="Type karke search karein..." oninput="doSearch()">
   </div>
 
-  <!-- Bottom Navigation Bar -->
-  <nav class="bottom-nav">
-    <div class="nav-item active" id="btn-home" onclick="switchTab('home')">🏠</div>
-    <div class="nav-item" id="btn-search" onclick="switchTab('search')">🔍</div>
-    <div class="nav-item" onclick="triggerUpload()">➕</div>
-    <div class="nav-item" id="btn-reels" onclick="switchTab('reels')">🎬</div>
-    <div class="nav-item" id="btn-profile" onclick="switchTab('profile')">👤</div>
-  </nav>
+  <div id="results"></div>
 
-  <!-- Hidden File Input for Image Upload -->
-  <input type="file" id="imageInput" accept="image/*" style="display: none;" onchange="handleNewImage(event)" />
+  <script>
+    let db = [];
+    fetch('database.json')
+      .then(res => res.json())
+      .then(data => { db = data; })
+      .catch(err => console.error("Database loading error:", err));
 
-  <!-- Fullscreen Story Modal -->
-  <div id="storyModal" class="story-modal">
-    <div>
-      <div class="story-progress"></div>
-      <div class="story-header">
-        <div class="story-user-meta">
-          <img id="storyModalAvatar" src="" style="width:36px; height:36px; border-radius:50%; object-fit:cover;" />
-          <span id="storyModalName" style="font-weight:700; font-size:0.9rem;"></span>
-        </div>
-        <button class="story-close" onclick="closeStory()">✕</button>
-      </div>
-    </div>
-    <div style="flex:1; display:flex; align-items:center; justify-content:center; margin:15px 0;">
-      <img id="storyModalImg" src="" style="max-width:100%; max-height:75vh; border-radius:12px; object-fit:contain;" />
-    </div>
-  </div>
+    function doSearch() {
+      const q = document.getElementById('query').value.toLowerCase().trim();
+      const resDiv = document.getElementById('results');
+      resDiv.innerHTML = '';
 
-  <script src="app.js"></script>
+      if (!q) return;
+
+      const matches = db.filter(item => 
+        item.title.toLowerCase().includes(q) || item.body.toLowerCase().includes(q)
+      );
+
+      if (matches.length === 0) {
+        resDiv.innerHTML = '<p style="color:#64748b; text-align:center;">Koi result nahi mila.</p>';
+        return;
+      }
+
+      matches.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `
+          <a href="${item.url}" target="_blank">${item.title}</a>
+          <p>${item.body}</p>
+        `;
+        resDiv.appendChild(div);
+      });
+    }
+  </script>
 </body>
 </html>
